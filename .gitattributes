@@ -1,0 +1,11 @@
+# Client-specific files — never overwritten by template merges
+client/** merge=ours
+.env.local merge=ours
+app/tools/** merge=ours
+app/free-estimate/** merge=ours
+app/api/visualizer/** merge=ours
+app/api/contact/** merge=ours
+app/api/leads/** merge=ours
+lib/skills/** merge=ours
+lib/crm-api.ts merge=ours
+components/site/CRMChatWidget.tsx merge=ours
