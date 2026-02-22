@@ -39,7 +39,7 @@ export function WizardBlock({ section, values, onChange }: WizardBlockProps) {
                 i < currentStep
                   ? "bg-green-500 text-white"
                   : i === currentStep
-                    ? "bg-blue-600 text-white"
+                    ? "bg-red-600 text-white"
                     : "bg-gray-200 text-gray-500"
               }`}
             >
@@ -92,7 +92,7 @@ export function WizardBlock({ section, values, onChange }: WizardBlockProps) {
           <button
             onClick={() => setCurrentStep((s) => Math.min(steps.length - 1, s + 1))}
             disabled={!canAdvance()}
-            className="inline-flex items-center gap-1.5 px-4 py-2 bg-blue-600 text-white text-sm font-medium rounded-lg hover:bg-blue-700 disabled:opacity-50 disabled:cursor-not-allowed transition-colors"
+            className="inline-flex items-center gap-1.5 px-4 py-2 bg-red-600 text-white text-sm font-medium rounded-lg hover:bg-red-700 disabled:opacity-50 disabled:cursor-not-allowed transition-colors"
           >
             Next
             <ChevronRight className="w-4 h-4" />

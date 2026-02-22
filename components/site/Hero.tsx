@@ -10,7 +10,7 @@ interface HeroProps {
 
 export function Hero({ title, subtitle, phone, imageUrl }: HeroProps) {
   return (
-    <section className="relative bg-gradient-to-br from-gray-900 via-blue-900 to-gray-900 text-white">
+    <section className="relative bg-gradient-to-br from-black via-gray-900 to-black text-white">
       {imageUrl && (
         <div
           className="absolute inset-0 bg-cover bg-center opacity-20"
@@ -22,11 +22,11 @@ export function Hero({ title, subtitle, phone, imageUrl }: HeroProps) {
           <h1 className="text-4xl sm:text-5xl lg:text-6xl font-bold tracking-tight mb-6">
             {title}
           </h1>
-          <p className="text-lg sm:text-xl text-blue-100 mb-8">{subtitle}</p>
+          <p className="text-lg sm:text-xl text-gray-300 mb-8">{subtitle}</p>
           <div className="flex flex-col sm:flex-row gap-4">
             <Link
               href="/contact"
-              className="inline-flex items-center justify-center gap-2 bg-blue-600 text-white px-8 py-3.5 rounded-lg text-lg font-medium hover:bg-blue-500 transition-colors"
+              className="inline-flex items-center justify-center gap-2 bg-red-600 text-white px-8 py-3.5 rounded-lg text-lg font-medium hover:bg-red-500 transition-colors"
             >
               Get a Free Quote
               <ArrowRight className="w-5 h-5" />

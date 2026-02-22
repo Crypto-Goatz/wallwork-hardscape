@@ -50,7 +50,7 @@ export function Header({ siteName, phone, logoImageId }: HeaderProps) {
               <Link
                 key={link.href}
                 href={link.href}
-                className="px-3 py-2 text-sm font-medium text-gray-600 hover:text-blue-600 rounded-md transition-colors"
+                className="px-3 py-2 text-sm font-medium text-gray-600 hover:text-red-600 rounded-md transition-colors"
               >
                 {link.label}
               </Link>
@@ -61,7 +61,7 @@ export function Header({ siteName, phone, logoImageId }: HeaderProps) {
             {phone && (
               <a
                 href={`tel:${phone.replace(/\D/g, "")}`}
-                className="flex items-center gap-1.5 text-sm font-medium text-blue-600 hover:text-blue-800"
+                className="flex items-center gap-1.5 text-sm font-medium text-red-600 hover:text-red-700"
               >
                 <Phone className="w-4 h-4" />
                 {phone}
@@ -69,7 +69,7 @@ export function Header({ siteName, phone, logoImageId }: HeaderProps) {
             )}
             <Link
               href="/contact"
-              className="bg-blue-600 text-white px-4 py-2 rounded-lg text-sm font-medium hover:bg-blue-700 transition-colors"
+              className="bg-red-600 text-white px-4 py-2 rounded-lg text-sm font-medium hover:bg-red-700 transition-colors"
             >
               Get a Quote
             </Link>
@@ -95,7 +95,7 @@ export function Header({ siteName, phone, logoImageId }: HeaderProps) {
                 key={link.href}
                 href={link.href}
                 onClick={() => setMobileOpen(false)}
-                className="block px-3 py-2 text-base font-medium text-gray-600 hover:text-blue-600 rounded-md"
+                className="block px-3 py-2 text-base font-medium text-gray-600 hover:text-red-600 rounded-md"
               >
                 {link.label}
               </Link>
@@ -103,7 +103,7 @@ export function Header({ siteName, phone, logoImageId }: HeaderProps) {
             {phone && (
               <a
                 href={`tel:${phone.replace(/\D/g, "")}`}
-                className="flex items-center gap-2 px-3 py-2 text-base font-medium text-blue-600"
+                className="flex items-center gap-2 px-3 py-2 text-base font-medium text-red-600"
               >
                 <Phone className="w-4 h-4" />
                 {phone}

@@ -15,7 +15,7 @@ function renderField(
   onChange: (name: string, value: string) => void
 ) {
   const baseClass =
-    "w-full rounded-lg border border-gray-300 px-4 py-2.5 text-gray-900 placeholder-gray-400 focus:border-blue-500 focus:outline-none focus:ring-2 focus:ring-blue-500/20 transition-colors";
+    "w-full rounded-lg border border-gray-300 px-4 py-2.5 text-gray-900 placeholder-gray-400 focus:border-red-500 focus:outline-none focus:ring-2 focus:ring-red-500/20 transition-colors";
 
   switch (field.type) {
     case "textarea":
@@ -58,7 +58,7 @@ function renderField(
                 value={opt}
                 checked={value === opt}
                 onChange={(e) => onChange(field.name, e.target.value)}
-                className="text-blue-600 focus:ring-blue-500"
+                className="text-red-600 focus:ring-red-500"
               />
               {opt}
             </label>
@@ -74,7 +74,7 @@ function renderField(
             name={field.name}
             checked={value === "true"}
             onChange={(e) => onChange(field.name, e.target.checked ? "true" : "false")}
-            className="rounded text-blue-600 focus:ring-blue-500"
+            className="rounded text-red-600 focus:ring-red-500"
           />
           {field.label}
         </label>

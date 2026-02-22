@@ -17,15 +17,15 @@ export interface SiteConfig {
 }
 
 const DEFAULTS: SiteConfig = {
-  name: "Business Name",
-  phone: "(555) 555-5555",
-  email: "info@example.com",
-  url: "https://example.com",
-  tagline: "Professional Services You Can Trust",
+  name: "Wall Work Hardscape",
+  phone: "(412) 555-0199",
+  email: "info@wallworkhardscape.com",
+  url: "https://wallworkhardscape.com",
+  tagline: "Built to Last. Designed to Impress.",
   colors: {
-    primary: "#2563eb",
-    secondary: "#1e40af",
-    accent: "#f59e0b",
+    primary: "#1a1a1a",
+    secondary: "#dc2626",
+    accent: "#dc2626",
   },
 };
 

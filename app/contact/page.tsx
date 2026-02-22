@@ -32,14 +32,14 @@ export default async function ContactPage() {
                 <div className="space-y-6">
                   {config.phone && (
                     <div className="flex items-start gap-4">
-                      <div className="flex h-12 w-12 shrink-0 items-center justify-center rounded-lg bg-blue-50 text-blue-600">
+                      <div className="flex h-12 w-12 shrink-0 items-center justify-center rounded-lg bg-red-50 text-red-600">
                         <Phone className="w-5 h-5" />
                       </div>
                       <div>
                         <p className="font-medium text-gray-900">Phone</p>
                         <a
                           href={`tel:${config.phone.replace(/\D/g, "")}`}
-                          className="text-gray-600 hover:text-blue-600 transition-colors"
+                          className="text-gray-600 hover:text-red-600 transition-colors"
                         >
                           {config.phone}
                         </a>
@@ -49,14 +49,14 @@ export default async function ContactPage() {
 
                   {config.email && (
                     <div className="flex items-start gap-4">
-                      <div className="flex h-12 w-12 shrink-0 items-center justify-center rounded-lg bg-blue-50 text-blue-600">
+                      <div className="flex h-12 w-12 shrink-0 items-center justify-center rounded-lg bg-red-50 text-red-600">
                         <Mail className="w-5 h-5" />
                       </div>
                       <div>
                         <p className="font-medium text-gray-900">Email</p>
                         <a
                           href={`mailto:${config.email}`}
-                          className="text-gray-600 hover:text-blue-600 transition-colors"
+                          className="text-gray-600 hover:text-red-600 transition-colors"
                         >
                           {config.email}
                         </a>

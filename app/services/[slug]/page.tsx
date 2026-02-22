@@ -86,16 +86,16 @@ export default async function ServiceDetailPage({
               </p>
             </div>
 
-            <div className="mt-16 rounded-2xl bg-blue-600 p-8 sm:p-12 text-center">
+            <div className="mt-16 rounded-2xl bg-red-600 p-8 sm:p-12 text-center">
               <h2 className="text-2xl sm:text-3xl font-bold text-white mb-4">
                 Interested in {service.title}?
               </h2>
-              <p className="text-blue-100 max-w-xl mx-auto mb-8">
+              <p className="text-red-100 max-w-xl mx-auto mb-8">
                 Get in touch with us to learn more about how we can help.
               </p>
               <Link
                 href="/contact"
-                className="inline-flex items-center gap-2 bg-white text-blue-600 px-8 py-3 rounded-lg text-lg font-semibold hover:bg-blue-50 transition-colors"
+                className="inline-flex items-center gap-2 bg-white text-red-600 px-8 py-3 rounded-lg text-lg font-semibold hover:bg-red-50 transition-colors"
               >
                 Contact Us <ArrowRight className="w-5 h-5" />
               </Link>

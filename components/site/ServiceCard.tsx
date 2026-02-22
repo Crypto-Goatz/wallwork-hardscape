@@ -34,11 +34,11 @@ export function ServiceCard({
         </div>
       )}
       <div className="p-6">
-        <h3 className="text-lg font-semibold text-gray-900 mb-2 group-hover:text-blue-600 transition-colors">
+        <h3 className="text-lg font-semibold text-gray-900 mb-2 group-hover:text-red-600 transition-colors">
           {title}
         </h3>
         <p className="text-sm text-gray-600 mb-4 line-clamp-3">{description}</p>
-        <span className="inline-flex items-center gap-1 text-sm font-medium text-blue-600 group-hover:gap-2 transition-all">
+        <span className="inline-flex items-center gap-1 text-sm font-medium text-red-600 group-hover:gap-2 transition-all">
           Learn More <ArrowRight className="w-4 h-4" />
         </span>
       </div>

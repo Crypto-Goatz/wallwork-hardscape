@@ -36,7 +36,7 @@ export function PortfolioGrid({ items }: PortfolioGridProps) {
             )}
             <div className="p-5">
               {item.category && (
-                <span className="inline-block text-xs font-medium text-blue-600 bg-blue-50 px-2.5 py-1 rounded-full mb-2">
+                <span className="inline-block text-xs font-medium text-red-600 bg-red-50 px-2.5 py-1 rounded-full mb-2">
                   {item.category}
                 </span>
               )}

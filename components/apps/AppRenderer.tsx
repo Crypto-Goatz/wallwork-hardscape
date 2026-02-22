@@ -61,7 +61,7 @@ export function AppRenderer({ definition, preview }: AppRendererProps) {
         {definition.settings?.redirectUrl && (
           <a
             href={definition.settings.redirectUrl}
-            className="inline-block mt-6 px-6 py-2.5 bg-blue-600 text-white rounded-lg font-medium hover:bg-blue-700 transition-colors"
+            className="inline-block mt-6 px-6 py-2.5 bg-red-600 text-white rounded-lg font-medium hover:bg-red-700 transition-colors"
           >
             Continue
           </a>
@@ -110,7 +110,7 @@ export function AppRenderer({ definition, preview }: AppRendererProps) {
           <button
             onClick={handleSubmit}
             disabled={submitting || preview}
-            className="w-full sm:w-auto px-8 py-3 bg-blue-600 text-white text-base font-medium rounded-lg hover:bg-blue-700 disabled:opacity-50 disabled:cursor-not-allowed transition-colors"
+            className="w-full sm:w-auto px-8 py-3 bg-red-600 text-white text-base font-medium rounded-lg hover:bg-red-700 disabled:opacity-50 disabled:cursor-not-allowed transition-colors"
           >
             {submitting
               ? "Submitting..."

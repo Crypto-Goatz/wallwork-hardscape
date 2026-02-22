@@ -94,7 +94,7 @@ export function Footer({ siteName, phone, email, logoImageId }: FooterProps) {
           &copy; {year} {siteName}. All rights reserved. Powered by{" "}
           <a
             href="https://rocketclients.com"
-            className="text-blue-400 hover:text-blue-300"
+            className="text-red-400 hover:text-red-300"
             target="_blank"
             rel="noopener noreferrer"
           >

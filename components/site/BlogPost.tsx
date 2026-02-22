@@ -86,11 +86,11 @@ export function BlogPost({
             })}
           </time>
         )}
-        <h3 className="text-lg font-semibold text-gray-900 mb-2 group-hover:text-blue-600 transition-colors">
+        <h3 className="text-lg font-semibold text-gray-900 mb-2 group-hover:text-red-600 transition-colors">
           {title}
         </h3>
         <p className="text-sm text-gray-600 line-clamp-2 mb-3">{excerpt}</p>
-        <span className="inline-flex items-center gap-1 text-sm font-medium text-blue-600 group-hover:gap-2 transition-all">
+        <span className="inline-flex items-center gap-1 text-sm font-medium text-red-600 group-hover:gap-2 transition-all">
           Read More <ArrowRight className="w-4 h-4" />
         </span>
       </div>

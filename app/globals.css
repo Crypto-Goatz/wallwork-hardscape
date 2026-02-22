@@ -8,9 +8,9 @@
 @theme inline {
   --color-background: var(--background);
   --color-foreground: var(--foreground);
-  --color-primary: var(--color-primary, #2563eb);
-  --color-secondary: var(--color-secondary, #1e40af);
-  --color-accent: var(--color-accent, #f59e0b);
+  --color-primary: var(--color-primary, #1a1a1a);
+  --color-secondary: var(--color-secondary, #dc2626);
+  --color-accent: var(--color-accent, #dc2626);
   --font-sans: var(--font-geist-sans);
   --font-mono: var(--font-geist-mono);
 }
@@ -70,10 +70,10 @@ body {
 }
 
 .prose a {
-  color: #2563eb;
+  color: #dc2626;
   text-decoration: underline;
 }
 
 .prose a:hover {
-  color: #1d4ed8;
+  color: #b91c1c;
 }

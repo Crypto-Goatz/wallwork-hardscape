@@ -59,7 +59,7 @@ export default async function AboutPage() {
                       {member.name}
                     </h3>
                     {member.role && (
-                      <p className="text-sm font-medium text-blue-600 mt-1">
+                      <p className="text-sm font-medium text-red-600 mt-1">
                         {member.role}
                       </p>
                     )}

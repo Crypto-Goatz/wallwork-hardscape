@@ -66,7 +66,7 @@ export default async function HomePage() {
                 <div className="text-center mt-8">
                   <Link
                     href="/services"
-                    className="inline-flex items-center gap-1 text-blue-600 font-medium hover:text-blue-800"
+                    className="inline-flex items-center gap-1 text-red-600 font-medium hover:text-red-700"
                   >
                     View All Services <ArrowRight className="w-4 h-4" />
                   </Link>
@@ -100,7 +100,7 @@ export default async function HomePage() {
                 <div className="text-center mt-8">
                   <Link
                     href="/testimonials"
-                    className="inline-flex items-center gap-1 text-blue-600 font-medium hover:text-blue-800"
+                    className="inline-flex items-center gap-1 text-red-600 font-medium hover:text-red-700"
                   >
                     See All Reviews <ArrowRight className="w-4 h-4" />
                   </Link>
@@ -111,16 +111,16 @@ export default async function HomePage() {
         )}
 
         {/* CTA Section */}
-        <section className="py-16 sm:py-20 bg-blue-600 text-white">
+        <section className="py-16 sm:py-20 bg-red-600 text-white">
           <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
             <h2 className="text-3xl font-bold mb-4">Ready to Get Started?</h2>
-            <p className="text-blue-100 text-lg mb-8 max-w-2xl mx-auto">
+            <p className="text-red-100 text-lg mb-8 max-w-2xl mx-auto">
               Contact us today for a free consultation. We&apos;ll discuss your
               project and provide a no-obligation quote.
             </p>
             <Link
               href="/contact"
-              className="inline-flex items-center gap-2 bg-white text-blue-600 px-8 py-3.5 rounded-lg text-lg font-medium hover:bg-blue-50 transition-colors"
+              className="inline-flex items-center gap-2 bg-white text-red-600 px-8 py-3.5 rounded-lg text-lg font-medium hover:bg-red-50 transition-colors"
             >
               Contact Us <ArrowRight className="w-5 h-5" />
             </Link>
