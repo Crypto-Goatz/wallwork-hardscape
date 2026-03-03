@@ -1,6 +1,7 @@
 import { Header } from "@/components/site/Header";
 import { Footer } from "@/components/site/Footer";
 import { ServiceCard } from "@/components/site/ServiceCard";
+import { FadeIn } from "@/components/site/FadeIn";
 import { getSiteConfig } from "@/config/site.config";
 import { getSheetData } from "@/lib/google/sheets";
 
@@ -26,27 +27,29 @@ export default async function ServicesPage() {
       <main className="min-h-screen">
         <section className="bg-gradient-to-b from-gray-50 to-white py-20">
           <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div className="text-center mb-12">
-              <h1 className="text-4xl font-bold tracking-tight text-gray-900 sm:text-5xl mb-4">
-                Our Services
-              </h1>
-              <p className="text-lg text-gray-600 max-w-2xl mx-auto">
-                Explore the services we offer. Every project gets the attention
-                and quality it deserves.
-              </p>
-            </div>
+            <FadeIn direction="up">
+              <div className="text-center mb-12">
+                <h1 className="text-4xl font-bold tracking-tight text-gray-900 sm:text-5xl mb-4">
+                  Our Services
+                </h1>
+                <p className="text-lg text-gray-600 max-w-2xl mx-auto">
+                  Explore the services we offer. Every project gets the attention and quality it deserves.
+                </p>
+              </div>
+            </FadeIn>
 
             {sorted.length > 0 ? (
               <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
-                {sorted.map((svc) => (
-                  <ServiceCard
-                    key={svc.id}
-                    title={svc.title}
-                    description={svc.description}
-                    slug={svc.slug}
-                    imageId={svc.image_id}
-                    icon={svc.icon}
-                  />
+                {sorted.map((svc, i) => (
+                  <FadeIn key={svc.id} direction="up" delay={i * 70}>
+                    <ServiceCard
+                      title={svc.title}
+                      description={svc.description}
+                      slug={svc.slug}
+                      imageId={svc.image_id}
+                      icon={svc.icon}
+                    />
+                  </FadeIn>
                 ))}
               </div>
             ) : (
@@ -57,7 +60,12 @@ export default async function ServicesPage() {
           </div>
         </section>
       </main>
-      <Footer siteName={config.name} phone={config.phone} email={config.email} logoImageId={config.logoImageId} />
+      <Footer
+        siteName={config.name}
+        phone={config.phone}
+        email={config.email}
+        logoImageId={config.logoImageId}
+      />
     </>
   );
 }
