@@ -18,7 +18,7 @@ export interface SiteConfig {
 
 const DEFAULTS: SiteConfig = {
   name: "Wall Work Hardscape",
-  phone: "(412) 555-0199",
+  phone: "(412) 235-8658",
   email: "info@wallworkhardscape.com",
   url: "https://wallworkhardscape.com",
   tagline: "Built to Last. Designed to Impress.",
@@ -66,7 +66,6 @@ export async function getSiteConfig(): Promise<SiteConfig> {
       DEFAULTS.name,
     phone:
       sheetConfig?.phone ||
-      process.env.NEXT_PUBLIC_SITE_PHONE ||
       DEFAULTS.phone,
     email:
       sheetConfig?.email ||
