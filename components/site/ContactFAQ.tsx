@@ -42,30 +42,34 @@ const FAQS = [
 function FAQItem({ q, a }: { q: string; a: string }) {
   const [open, setOpen] = useState(false);
   return (
-    <div className="border-b border-border last:border-0">
+    <div className="border-b border-[color:var(--color-border)] last:border-0">
       <button
         type="button"
         onClick={() => setOpen(!open)}
         className="w-full flex items-center justify-between gap-4 py-5 text-left"
       >
-        <span className="text-sm font-semibold text-foreground leading-snug">{q}</span>
+        <span className="text-sm font-semibold text-[color:var(--color-foreground)] leading-snug">
+          {q}
+        </span>
         <div
           className={cn(
             "w-7 h-7 rounded-full flex items-center justify-center shrink-0 border-2 transition-colors",
             open
               ? "border-[color:var(--color-accent)] bg-[color:var(--color-accent)]/10"
-              : "border-border"
+              : "border-[color:var(--color-border)]"
           )}
         >
           {open ? (
-            <Minus className="w-3 h-3 text-[color:var(--color-accent)]" />
+            <Minus className="w-3 h-3 text-[color:var(--color-accent)]" strokeWidth={2} />
           ) : (
-            <Plus className="w-3 h-3 text-muted-foreground" />
+            <Plus className="w-3 h-3 text-[color:var(--color-muted-foreground)]" strokeWidth={2} />
           )}
         </div>
       </button>
       {open && (
-        <p className="text-sm text-muted-foreground leading-relaxed pb-5 pr-8">{a}</p>
+        <p className="text-sm text-[color:var(--color-muted-foreground)] leading-relaxed pb-5 pr-8">
+          {a}
+        </p>
       )}
     </div>
   );
@@ -73,20 +77,20 @@ function FAQItem({ q, a }: { q: string; a: string }) {
 
 export function ContactFAQ() {
   return (
-    <section className="py-16 bg-muted/30 border-t border-border">
+    <section className="py-16 bg-[color:var(--color-muted)]/30 border-t border-[color:var(--color-border)]">
       <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="text-center mb-10">
           <p className="text-xs uppercase tracking-widest text-[color:var(--color-accent)] font-semibold mb-2">
             Common Questions
           </p>
-          <h2 className="text-3xl md:text-4xl font-bold text-foreground text-balance">
+          <h2 className="text-3xl md:text-4xl font-bold text-[color:var(--color-foreground)] text-balance">
             Frequently Asked Questions
           </h2>
-          <p className="text-muted-foreground mt-3 leading-relaxed">
+          <p className="text-[color:var(--color-muted-foreground)] mt-3 leading-relaxed">
             Everything you need to know before requesting your estimate.
           </p>
         </div>
-        <div className="bg-background rounded-2xl border border-border shadow-sm px-6 md:px-8">
+        <div className="bg-[color:var(--color-background)] rounded-2xl border border-[color:var(--color-border)] shadow-sm px-6 md:px-8">
           {FAQS.map((faq, i) => (
             <FAQItem key={i} q={faq.q} a={faq.a} />
           ))}
