@@ -42,9 +42,8 @@ export function Header({ siteName, phone, logoImageId }: HeaderProps) {
             <Image
               src="/logo.png"
               alt={siteName}
-              width={0}
-              height={0}
-              sizes="220px"
+              width={440}
+              height={124}
               className="h-14 w-auto object-contain"
               priority
             />

@@ -92,7 +92,18 @@ export function Footer({ siteName, phone, email, logoImageId }: FooterProps) {
 
         <div className="border-t border-gray-800 mt-8 pt-8 flex flex-col sm:flex-row items-center justify-between gap-3 text-sm text-gray-500">
           <p>&copy; {year} {siteName}. All rights reserved.</p>
-          <div className="flex items-center gap-4">
+          <div className="flex items-center gap-4 flex-wrap justify-center">
+            <a
+              href="https://www.google.com/search?sca_esv=73000156de4ea350&hl=en-US&sxsrf=ANbL-n6WogYC5zDWfrjsyZM-esPTFNmMWQ:1772552529574&si=AL3DRZEsmMGCryMMFSHJ3StBhOdZ2-6yYkXd_doETEE1OR-qOXiK3Htuf0pOvPDjCYPKKWcSnCGeQvd9e0r0vbAsrv79nbSEOe1NjYaQB7jhSA0u4TXUSWqd1Q_uoX0BSfJPejMXlqn-6BCV7vR0S3qTqsUmd5Tcyg%3D%3D&q=Wall+Works+Hardscape+LLC+Reviews&sa=X&ved=2ahUKEwjizPveiISTAxWyEFkFHWtoBUUQ0bkNegQIHRAD&biw=1471&bih=812&dpr=2#lrd=0x4e47eff9aaf181c9:0x5c2ea2c578e321a6,3,,,,"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="flex items-center gap-1.5 text-yellow-500 hover:text-yellow-400 transition-colors font-medium"
+            >
+              <svg className="w-4 h-4 fill-current" viewBox="0 0 24 24" aria-hidden="true">
+                <path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z" />
+              </svg>
+              Rate Our Work on Google
+            </a>
             <Link href="/privacy" className="hover:text-gray-300 transition-colors">Privacy Policy</Link>
             <Link href="/terms" className="hover:text-gray-300 transition-colors">Terms &amp; Conditions</Link>
           </div>
