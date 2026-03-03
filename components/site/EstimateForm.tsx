@@ -270,7 +270,7 @@ export function EstimateForm() {
             </p>
           </div>
           <a
-            href="tel:4125550199"
+            href="tel:4122358658"
             className="flex items-center gap-2 bg-[color:var(--color-accent)] text-white text-sm font-bold px-4 py-2.5 rounded-lg hover:opacity-90 transition shrink-0"
           >
             <Phone className="w-4 h-4" strokeWidth={1.5} />
@@ -392,7 +392,7 @@ export function EstimateForm() {
                   type="tel"
                   value={data.phone}
                   onChange={(e) => setData({ ...data, phone: e.target.value })}
-                  placeholder="(412) 555-0199"
+                  placeholder="(412) 235-8658"
                   className={inputCls}
                 />
               </div>
