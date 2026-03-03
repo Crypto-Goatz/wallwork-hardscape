@@ -90,16 +90,12 @@ export function Footer({ siteName, phone, email, logoImageId }: FooterProps) {
           </div>
         </div>
 
-        <div className="border-t border-gray-800 mt-8 pt-8 text-center text-sm text-gray-500">
-          &copy; {year} {siteName}. All rights reserved. Powered by{" "}
-          <a
-            href="https://rocketclients.com"
-            className="text-red-400 hover:text-red-300"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Rocket+
-          </a>
+        <div className="border-t border-gray-800 mt-8 pt-8 flex flex-col sm:flex-row items-center justify-between gap-3 text-sm text-gray-500">
+          <p>&copy; {year} {siteName}. All rights reserved.</p>
+          <div className="flex items-center gap-4">
+            <Link href="/privacy" className="hover:text-gray-300 transition-colors">Privacy Policy</Link>
+            <Link href="/terms" className="hover:text-gray-300 transition-colors">Terms &amp; Conditions</Link>
+          </div>
         </div>
       </div>
     </footer>

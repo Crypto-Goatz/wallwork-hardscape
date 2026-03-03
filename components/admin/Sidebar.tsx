@@ -6,23 +6,19 @@ import {
   LayoutDashboard,
   FileText,
   Image as ImageIcon,
-  Sparkles,
   BarChart3,
-  Search,
   Settings,
   ArrowLeft,
-  Blocks,
+  Inbox,
 } from "lucide-react";
 import { cn } from "@/lib/utils";
 
 const NAV_ITEMS = [
   { href: "/admin", label: "Dashboard", icon: LayoutDashboard },
   { href: "/admin/content", label: "Content", icon: FileText },
+  { href: "/admin/leads", label: "Leads", icon: Inbox },
   { href: "/admin/media", label: "Media", icon: ImageIcon },
-  { href: "/admin/ai", label: "AI Writer", icon: Sparkles },
   { href: "/admin/analytics", label: "Analytics", icon: BarChart3 },
-  { href: "/admin/apps", label: "Apps", icon: Blocks },
-  { href: "/admin/sxo", label: "SXO", icon: Search },
   { href: "/admin/settings", label: "Settings", icon: Settings },
 ];
 

@@ -2,7 +2,7 @@ import { NextRequest, NextResponse } from "next/server";
 import { Resend } from "resend";
 import { createContact } from "@/lib/crm";
 import { trackConversion } from "@/lib/cro9";
-import { getSiteConfigFromSheet } from "@/lib/google/sheets";
+import { getSiteConfigFromSheet, appendSheetRow } from "@/lib/google/sheets";
 
 const PROJECT_TYPE_LABELS: Record<string, string> = {
   residential_wall: "Residential Retaining Wall",
@@ -283,6 +283,26 @@ export async function POST(req: NextRequest) {
 
   if (!email || !firstName || !phone) {
     return NextResponse.json({ error: "Missing required fields" }, { status: 400 });
+  }
+
+  // Save lead to Google Sheets
+  try {
+    await appendSheetRow("leads", {
+      id: `lead_${Date.now()}`,
+      submitted_at: new Date().toISOString(),
+      first_name: firstName,
+      last_name: lastName,
+      email,
+      phone,
+      address,
+      project_types: (projectTypes as string[]).map((t) => PROJECT_TYPE_LABELS[t] || t).join(", "),
+      description,
+      timeline: TIMELINE_LABELS[timeline] || timeline,
+      project_stage: STAGE_LABELS[projectStage] || projectStage,
+      status: "new",
+    });
+  } catch {
+    // Non-fatal — continue even if Sheets isn't configured
   }
 
   const resendKey = process.env.RESEND_API_KEY;

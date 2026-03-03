@@ -42,9 +42,10 @@ export function Header({ siteName, phone, logoImageId }: HeaderProps) {
             <Image
               src="/logo.png"
               alt={siteName}
-              width={200}
-              height={56}
+              width={220}
+              height={62}
               className="h-14 w-auto object-contain"
+              style={{ width: "auto" }}
               priority
             />
           </Link>

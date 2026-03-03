@@ -5,13 +5,13 @@ import { ContentEditor } from "@/components/admin/ContentEditor";
 import { SHEETS_SCHEMA, type SheetName } from "@/config/sheets-schema";
 import type { Row } from "@/lib/google/sheets";
 
-const TABS: { key: SheetName; label: string }[] = [
-  { key: "services", label: "Services" },
-  { key: "blog", label: "Blog" },
-  { key: "portfolio", label: "Portfolio" },
-  { key: "testimonials", label: "Testimonials" },
-  { key: "team", label: "Team" },
-  { key: "faqs", label: "FAQs" },
+const TABS: { key: SheetName; label: string; description: string }[] = [
+  { key: "page_content", label: "Page Content", description: "Edit text blocks for Home, About, Services, Contact pages" },
+  { key: "services", label: "Services", description: "Service offerings displayed on the services page" },
+  { key: "portfolio", label: "Portfolio", description: "Project photos and descriptions" },
+  { key: "testimonials", label: "Testimonials", description: "Client reviews and ratings" },
+  { key: "faqs", label: "FAQs", description: "Frequently asked questions (shown on contact page)" },
+  { key: "team", label: "Team", description: "Team member profiles shown on the About page" },
 ];
 
 export default function ContentPage() {
@@ -74,12 +74,12 @@ export default function ContentPage() {
       </div>
 
       <div className="border-b border-gray-200">
-        <nav className="flex gap-1 -mb-px">
+        <nav className="flex gap-1 -mb-px overflow-x-auto">
           {TABS.map((tab) => (
             <button
               key={tab.key}
               onClick={() => setActiveTab(tab.key)}
-              className={`px-4 py-2 text-sm font-medium border-b-2 transition-colors ${
+              className={`px-4 py-2.5 text-sm font-medium border-b-2 transition-colors whitespace-nowrap ${
                 activeTab === tab.key
                   ? "border-blue-600 text-blue-600"
                   : "border-transparent text-gray-500 hover:text-gray-700 hover:border-gray-300"
@@ -90,6 +90,11 @@ export default function ContentPage() {
           ))}
         </nav>
       </div>
+
+      {/* Tab description */}
+      <p className="text-sm text-gray-500 -mt-2">
+        {TABS.find((t) => t.key === activeTab)?.description}
+      </p>
 
       {loading ? (
         <div className="flex items-center justify-center py-12">
