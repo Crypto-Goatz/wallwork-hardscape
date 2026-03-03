@@ -7,7 +7,7 @@ import { FadeIn } from "@/components/site/FadeIn";
 import { getSiteConfig } from "@/config/site.config";
 import { getSheetData } from "@/lib/google/sheets";
 import Link from "next/link";
-import { ArrowRight } from "lucide-react";
+import { ArrowRight, Phone } from "lucide-react";
 
 export const revalidate = 300;
 
@@ -33,6 +33,8 @@ export default async function HomePage() {
           title={config.name}
           subtitle={config.tagline || "Professional hardscape services you can trust"}
           phone={config.phone}
+          eyebrow="Pittsburgh's Premier Hardscape Contractor"
+          imageUrl="/hero-hardscape.jpg"
         />
 
         {/* Services Section */}
@@ -133,6 +135,10 @@ export default async function HomePage() {
               >
                 Get a Free Quote <ArrowRight className="w-5 h-5" />
               </Link>
+              <p className="mt-4 flex items-center justify-center gap-2 text-red-200 text-sm">
+                <Phone className="w-4 h-4" strokeWidth={1.5} />
+                Or call us directly: <a href={`tel:${config.phone.replace(/\D/g, "")}`} className="font-semibold text-white hover:underline">{config.phone}</a>
+              </p>
             </div>
           </FadeIn>
         </section>

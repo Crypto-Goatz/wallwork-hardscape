@@ -12,25 +12,21 @@ interface FadeInProps {
   delay?: number;
   duration?: number;
   threshold?: number;
+  rootMargin?: string;
   once?: boolean;
   as?: React.ElementType;
 }
 
-const directionMap: Record<Direction, string> = {
-  up: "translate-y-8",
-  down: "-translate-y-8",
-  left: "translate-x-8",
-  right: "-translate-x-8",
-  none: "",
-};
+const TRANSLATE_PX = 28; // subtle — not too dramatic
 
 export function FadeIn({
   children,
   className,
   direction = "up",
   delay = 0,
-  duration = 600,
-  threshold = 0.12,
+  duration = 800,
+  threshold = 0.08,
+  rootMargin = "0px 0px -60px 0px",
   once = true,
   as: Tag = "div",
 }: FadeInProps) {
@@ -50,14 +46,23 @@ export function FadeIn({
           setVisible(false);
         }
       },
-      { threshold }
+      { threshold, rootMargin }
     );
 
     observer.observe(el);
     return () => observer.disconnect();
-  }, [threshold, once]);
+  }, [threshold, rootMargin, once]);
 
-  const translateClass = directionMap[direction];
+  const getInitialTransform = () => {
+    if (visible) return "translate3d(0,0,0)";
+    switch (direction) {
+      case "up":    return `translate3d(0,${TRANSLATE_PX}px,0)`;
+      case "down":  return `translate3d(0,-${TRANSLATE_PX}px,0)`;
+      case "left":  return `translate3d(${TRANSLATE_PX}px,0,0)`;
+      case "right": return `translate3d(-${TRANSLATE_PX}px,0,0)`;
+      default:      return "translate3d(0,0,0)";
+    }
+  };
 
   return (
     <Tag
@@ -65,25 +70,14 @@ export function FadeIn({
       className={cn(className)}
       style={{
         opacity: visible ? 1 : 0,
-        transform: visible ? "translate(0,0)" : undefined,
+        transform: getInitialTransform(),
+        // "will-change" avoids paint on compositing layers
+        willChange: visible ? "auto" : "opacity, transform",
         transitionProperty: "opacity, transform",
         transitionDuration: `${duration}ms`,
-        transitionTimingFunction: "cubic-bezier(0.22, 1, 0.36, 1)",
+        // Custom spring-like easing: slow start → fast middle → gentle settle
+        transitionTimingFunction: "cubic-bezier(0.16, 1, 0.3, 1)",
         transitionDelay: `${delay}ms`,
-        ...(visible
-          ? {}
-          : {
-              transform:
-                direction === "up"
-                  ? "translateY(2rem)"
-                  : direction === "down"
-                  ? "translateY(-2rem)"
-                  : direction === "left"
-                  ? "translateX(2rem)"
-                  : direction === "right"
-                  ? "translateX(-2rem)"
-                  : "none",
-            }),
       }}
     >
       {children}
