@@ -97,6 +97,50 @@ export function Footer({ siteName, phone, email, logoImageId }: FooterProps) {
             <Link href="/terms" className="hover:text-gray-300 transition-colors">Terms &amp; Conditions</Link>
           </div>
         </div>
+
+        {/* Powered by bar */}
+        <div className="border-t border-gray-800 mt-6 pt-6 flex flex-col items-center gap-3">
+          <div className="flex items-center gap-5 justify-center">
+            <a
+              href="https://rocketopp.com"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="flex items-center gap-2 group"
+            >
+              {/* Placeholder — user will replace with real RocketOpp logo */}
+              <div className="w-7 h-7 rounded bg-red-600 flex items-center justify-center text-white text-xs font-bold">
+                R+
+              </div>
+              <span className="text-xs text-gray-500 group-hover:text-gray-300 transition-colors font-medium">
+                Powered by RocketOpp
+              </span>
+            </a>
+            <span className="text-gray-700 text-xs">|</span>
+            <a
+              href="https://0nmcp.com"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="flex items-center gap-2 group"
+            >
+              {/* Placeholder — user will replace with real 0nMCP logo */}
+              <div className="w-7 h-7 rounded bg-gray-700 flex items-center justify-center text-white text-[10px] font-bold">
+                0N
+              </div>
+              <span className="text-xs text-gray-500 group-hover:text-gray-300 transition-colors font-medium">
+                0nMCP.com
+              </span>
+            </a>
+          </div>
+          <p className="text-[10px] text-gray-700 text-center max-w-2xl leading-relaxed">
+            This site contains proprietary code of{" "}
+            <a href="https://rocketopp.com" target="_blank" rel="noopener noreferrer" className="text-gray-600 hover:text-gray-500 underline underline-offset-2">
+              RocketOpp
+            </a>
+            . Any individual who accesses this codebase is subject to, and must abide by, the intellectual and physical
+            property rules set forth within RocketOpp&apos;s legal terms. Unauthorized use, reproduction, or distribution
+            of this code is strictly prohibited.
+          </p>
+        </div>
       </div>
     </footer>
   );
