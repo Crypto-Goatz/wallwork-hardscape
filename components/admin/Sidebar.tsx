@@ -11,6 +11,8 @@ import {
   ArrowLeft,
   Inbox,
   ExternalLink,
+  Star,
+  Grid,
 } from "lucide-react";
 import { cn } from "@/lib/utils";
 import Image from "next/image";
@@ -19,6 +21,8 @@ const NAV_ITEMS = [
   { href: "/admin", label: "Dashboard", icon: LayoutDashboard },
   { href: "/admin/content", label: "Content", icon: FileText },
   { href: "/admin/leads", label: "Leads", icon: Inbox },
+  { href: "/admin/testimonials", label: "Testimonials", icon: Star },
+  { href: "/admin/portfolio", label: "Portfolio", icon: Grid },
   { href: "/admin/media", label: "Media", icon: ImageIcon },
   { href: "/admin/analytics", label: "Analytics", icon: BarChart3 },
   { href: "/admin/settings", label: "Settings", icon: Settings },

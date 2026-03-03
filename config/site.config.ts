@@ -66,7 +66,6 @@ export async function getSiteConfig(): Promise<SiteConfig> {
       DEFAULTS.name,
     phone:
       sheetConfig?.phone ||
-      process.env.NEXT_PUBLIC_SITE_PHONE ||
       DEFAULTS.phone,
     email:
       sheetConfig?.email ||

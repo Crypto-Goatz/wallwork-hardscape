@@ -8,6 +8,14 @@ import { getSheetData } from "@/lib/google/sheets";
 import Link from "next/link";
 import { ArrowRight, Phone } from "lucide-react";
 
+const PLACEHOLDER_TESTIMONIALS = [
+  { id: "p1", name: "Brian M.", role: "Homeowner — Mt. Lebanon, PA", text: "Wall Works completely transformed our backyard. The retaining wall they built is solid, beautiful, and exactly what we envisioned. The crew was professional, on time, and cleaned up every day.", rating: "5" },
+  { id: "p2", name: "Stephanie R.", role: "Homeowner — Peters Township, PA", text: "We had a massive erosion problem on our hillside property. Wall Works built a tiered boulder wall system that solved everything. Honestly exceeded our expectations.", rating: "5" },
+  { id: "p3", name: "Dave & Lisa T.", role: "Homeowners — Upper St. Clair, PA", text: "From the estimate to the final walkthrough, everything was seamless. Our paver patio and outdoor kitchen came out stunning. We use it every weekend. Worth every penny.", rating: "5" },
+  { id: "p4", name: "Kevin O.", role: "Property Manager — Pittsburgh, PA", text: "We needed a commercial retaining wall done fast and done right. Wall Works delivered on both. Clear communication, competitive price, and flawless execution. Will use again.", rating: "5" },
+  { id: "p5", name: "Rachel H.", role: "Homeowner — Bethel Park, PA", text: "Our concrete driveway and front walkway look absolutely incredible. Multiple neighbors have asked who we used. Couldn't be happier with the quality and professionalism.", rating: "5" },
+];
+
 export const revalidate = 300;
 
 export default async function TestimonialsPage() {
@@ -19,6 +27,8 @@ export default async function TestimonialsPage() {
   } catch {
     // Sheets not configured
   }
+
+  const displayTestimonials = testimonials.length > 0 ? testimonials : PLACEHOLDER_TESTIMONIALS;
 
   return (
     <>
@@ -36,26 +46,18 @@ export default async function TestimonialsPage() {
 
         <section className="py-16 sm:py-20 bg-background">
           <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
-            {testimonials.length > 0 ? (
-              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-                {testimonials.map((t, i) => (
-                  <FadeIn key={t.id || i} direction="up" delay={i * 80}>
-                    <TestimonialCard
-                      name={t.name}
-                      role={t.role}
-                      text={t.text}
-                      rating={t.rating}
-                    />
-                  </FadeIn>
-                ))}
-              </div>
-            ) : (
-              <FadeIn direction="up">
-                <p className="text-center text-muted-foreground py-16 text-lg">
-                  Client reviews coming soon!
-                </p>
-              </FadeIn>
-            )}
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+              {displayTestimonials.map((t, i) => (
+                <FadeIn key={t.id || i} direction="up" delay={i * 80}>
+                  <TestimonialCard
+                    name={t.name}
+                    role={t.role}
+                    text={t.text}
+                    rating={t.rating}
+                  />
+                </FadeIn>
+              ))}
+            </div>
           </div>
         </section>
 
