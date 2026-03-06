@@ -235,6 +235,36 @@ export default function HomePage() {
           </div>
         </section>
 
+        {/* ===== HOME SHOW BANNER ===== */}
+        {/* TODO: Remove after March 16, 2026 */}
+        <section className="relative bg-gradient-to-r from-black via-gray-950 to-black border-y border-red-600/30 overflow-hidden">
+          <div className="absolute inset-0 bg-[url('/textures/brick-pattern.jpg')] bg-cover bg-center opacity-5" />
+          <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-6">
+            <div className="flex flex-col sm:flex-row items-center justify-between gap-4">
+              <div className="flex items-center gap-4">
+                <div className="flex items-center justify-center w-14 h-14 rounded-2xl bg-red-600 text-white shrink-0 shadow-lg shadow-red-600/30">
+                  <span className="text-2xl font-black">$500</span>
+                </div>
+                <div>
+                  <p className="text-white font-bold text-lg leading-tight">
+                    Pittsburgh Home &amp; Garden Show
+                  </p>
+                  <p className="text-gray-400 text-sm">
+                    March 7&ndash;15 &mdash; Get a <span className="text-red-400 font-semibold">$500 Visa Gift Card</span> with any project over $7,500
+                  </p>
+                </div>
+              </div>
+              <Link
+                href="/homeshow"
+                className="inline-flex items-center gap-2 bg-red-600 text-white px-6 py-3 rounded-xl text-sm font-bold hover:bg-red-500 transition-colors shadow-lg shadow-red-600/20 shrink-0"
+              >
+                Claim Your Bonus
+                <ArrowRight className="w-4 h-4" />
+              </Link>
+            </div>
+          </div>
+        </section>
+
         {/* ===== SERVICES GRID ===== */}
         <section className="py-16 sm:py-20 bg-gray-50">
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
