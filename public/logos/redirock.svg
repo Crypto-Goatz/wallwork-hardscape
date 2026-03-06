@@ -1,0 +1,6 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 240 50" width="240" height="50">
+  <text x="0" y="38" font-family="Arial Black, Arial, sans-serif" font-weight="900" font-size="40" fill="#cc0000" letter-spacing="1">REDI</text>
+  <text x="112" y="38" font-family="Arial Black, Arial, sans-serif" font-weight="900" font-size="40" fill="#cc0000" letter-spacing="1">ROCK</text>
+  <circle cx="108" cy="26" r="4" fill="#cc0000"/>
+  <text x="223" y="18" font-family="Arial, sans-serif" font-size="10" fill="#cc0000">&#174;</text>
+</svg>

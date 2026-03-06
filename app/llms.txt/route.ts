@@ -16,10 +16,10 @@ const LLMS_TXT = `# Wall Works Hardscape
 - Versa-Lok — Engineered segmental retaining wall systems
 - MagnumStone — Commercial structural retaining wall systems
 - Keystone Hardscapes — Compac III retaining wall system
-- Wire-Faced MSE — Mechanically stabilized earth retaining walls
+- Tensar — Walls and slope stabilization systems
 - RECON Wall Systems — Large-scale commercial retaining systems
-- Stone & Company — ReadyRock precast retaining wall systems
-- Concord Wall Systems — Patented structural retaining wall system
+- Redi-Rock — Precast concrete retaining wall systems
+- Concorde Wall Systems — Patented structural retaining wall system
 
 ## Service Areas
 Pittsburgh, Allegheny County, Westmoreland County, Greensburg, Irwin, North Huntingdon, Monroeville, Murrysville, Latrobe, Plum, Wexford, Cranberry Township

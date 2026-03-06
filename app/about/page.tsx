@@ -23,7 +23,7 @@ const DIFFERENTIATORS = [
     icon: Shield,
     title: "Engineered Solutions",
     description:
-      "We install manufacturer-engineered retaining wall systems from trusted brands including Unilock, Versa-Lok, MagnumStone, Keystone, RECON, Concord, and Stone & Company.",
+      "We install manufacturer-engineered retaining wall systems from trusted brands including Unilock, Versa-Lok, MagnumStone, Keystone, RECON, Redi-Rock, Tensar, and Concorde.",
   },
   {
     icon: FileText,

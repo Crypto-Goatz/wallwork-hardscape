@@ -113,10 +113,10 @@ const SYSTEMS = [
     logo: "/logos/keystone.jpg",
   },
   {
-    name: "Wire-Faced MSE",
-    description: "Mechanically stabilized earth retaining walls",
-    url: "#",
-    logo: null,
+    name: "Tensar",
+    description: "Walls and slope stabilization systems",
+    url: "https://www.tensarcorp.com/solutions/walls-slope-systems",
+    logo: "/logos/tensar.svg",
   },
   {
     name: "RECON Wall Systems",
@@ -125,16 +125,16 @@ const SYSTEMS = [
     logo: "/logos/recon.png",
   },
   {
-    name: "Stone & Company",
-    description: "ReadyRock precast retaining wall systems",
-    url: "#",
-    logo: null,
+    name: "Redi-Rock",
+    description: "Precast concrete retaining wall systems",
+    url: "https://www.stoneconcrete.com/retaining-walls",
+    logo: "/logos/redirock.svg",
   },
   {
-    name: "Concord Wall Systems",
+    name: "Concorde Wall Systems",
     description: "Patented structural retaining wall system",
-    url: "#",
-    logo: null,
+    url: "https://www.concordewalls.com/design-supply-construct.html",
+    logo: "/logos/concorde.svg",
   },
 ];
 
@@ -194,7 +194,15 @@ export default function HomePage() {
         />
 
         {/* ===== HERO ===== */}
-        <section className="relative bg-gradient-to-br from-black via-gray-900 to-black text-white">
+        <section className="relative text-white overflow-hidden">
+          <div className="absolute inset-0">
+            <img
+              src="/hero-retaining-wall.jpg"
+              alt="Retaining wall project by Wall Works Hardscape"
+              className="w-full h-full object-cover"
+            />
+            <div className="absolute inset-0 bg-gradient-to-r from-black/90 via-black/75 to-black/50" />
+          </div>
           <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-24 sm:py-32">
             <div className="max-w-3xl">
               <h1 className="text-4xl sm:text-5xl lg:text-6xl font-bold tracking-tight mb-6">

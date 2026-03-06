@@ -1,4 +1,5 @@
 import Link from "next/link";
+import Image from "next/image";
 import { Header } from "@/components/site/Header";
 import { Footer } from "@/components/site/Footer";
 import {
@@ -10,16 +11,15 @@ import {
   Landmark,
   ArrowRight,
   Phone,
-  CheckCircle,
-  Shield,
   Wrench,
-  FileText,
+  Shield,
 } from "lucide-react";
 
 const services = [
   {
     icon: Hammer,
     title: "Hardscape Contractor",
+    image: "/portfolio/paver-patio-firepit-retaining-wall.jpg",
     description:
       "Hardscape construction transforms outdoor spaces into functional, beautiful extensions of your property. Our team specializes in designing and building durable hardscape features that improve property value while creating spaces your family and guests will enjoy for years to come.",
     items: [
@@ -35,6 +35,7 @@ const services = [
   {
     icon: Layers,
     title: "Retaining Wall Contractor",
+    image: "/portfolio/tiered-retaining-wall-hillside.jpg",
     description:
       "We design and install residential and commercial retaining walls engineered for long-term structural integrity. Our retaining wall systems address slope stabilization, landscape retention, and commercial site development challenges with proven products from industry-leading manufacturers.",
     items: [
@@ -44,11 +45,12 @@ const services = [
       "Retaining wall repairs",
     ],
     extra:
-      "Systems installed include: Unilock, Versa-Lok, MagnumStone, Keystone Compac III, RECON, and Concord. Applications include slope stabilization, landscape retention, and commercial site development.",
+      "Systems installed include: Unilock, Versa-Lok, MagnumStone, Keystone Compac III, RECON, Tensar, Redi-Rock, and Concorde.",
   },
   {
     icon: Shovel,
     title: "Excavation Contractor",
+    image: "/portfolio/retaining-wall-geogrid-installation.jpg",
     description:
       "Professional excavation ensures proper structural stability and water control for every project. From initial site preparation through final grading, our experienced crews handle earthwork of all scales with precision equipment and careful attention to existing utilities and property features.",
     items: [
@@ -63,6 +65,7 @@ const services = [
   {
     icon: Droplets,
     title: "Grading & Drainage",
+    image: "/portfolio/commercial-retaining-wall-driveway.jpg",
     description:
       "Proper grading and drainage protect your property from water damage, erosion, and foundation issues. We assess your site conditions and implement effective solutions that direct water away from structures while maintaining the natural aesthetics of your landscape.",
     items: [
@@ -75,6 +78,7 @@ const services = [
   {
     icon: HardHat,
     title: "Concrete Contractor",
+    image: "/portfolio/commercial-block-wall-site-development.jpg",
     description:
       "Our concrete services cover everything from residential driveways to commercial structural work. We deliver clean, level, and long-lasting concrete installations with proper reinforcement, expansion joints, and finishing techniques suited to each application.",
     items: [
@@ -88,6 +92,7 @@ const services = [
   {
     icon: Landmark,
     title: "Masonry Contractor",
+    image: "/portfolio/brick-paver-patio-planter.jpg",
     description:
       "From new construction to historical restoration, our masonry team delivers precise, quality craftsmanship. We work with brick, block, and natural stone to build and repair structures that stand the test of time while maintaining their visual appeal.",
     items: [
@@ -133,13 +138,23 @@ export default function ServicesPage() {
     <>
       <Header siteName="Wall Works Hardscape" phone="(412) 235-8658" />
       <main className="min-h-screen bg-white">
-        {/* Hero */}
-        <section className="bg-gradient-to-br from-black via-gray-900 to-black py-20">
-          <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-            <h1 className="text-4xl font-bold tracking-tight text-white sm:text-5xl mb-4">
+        {/* Hero with background image */}
+        <section className="relative overflow-hidden">
+          <div className="absolute inset-0">
+            <Image
+              src="/textures/stone-blocks.jpg"
+              alt=""
+              fill
+              className="object-cover"
+              priority
+            />
+            <div className="absolute inset-0 bg-black/80" />
+          </div>
+          <div className="relative max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 py-24 text-center">
+            <h1 className="text-4xl font-bold tracking-tight text-white sm:text-5xl mb-5">
               Our Services
             </h1>
-            <p className="text-lg text-gray-300 max-w-3xl mx-auto">
+            <p className="text-lg text-gray-300 max-w-3xl mx-auto leading-relaxed">
               At Wall Works Hardscape, we design and build durable outdoor
               construction projects that improve drainage, stabilize landscapes,
               and enhance property value. Our services include retaining walls,
@@ -160,7 +175,7 @@ export default function ServicesPage() {
               {WHY_CHOOSE.map((reason, i) => (
                 <div
                   key={i}
-                  className="flex items-start gap-3 bg-white rounded-xl border border-gray-200 p-5"
+                  className="flex items-start gap-3 bg-white rounded-xl border border-gray-200 p-5 shadow-sm"
                 >
                   <div className="flex items-center justify-center w-8 h-8 rounded-lg bg-red-600 text-white shrink-0 text-sm font-bold">
                     {i + 1}
@@ -174,8 +189,8 @@ export default function ServicesPage() {
           </div>
         </section>
 
-        {/* Service Sections */}
-        <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 py-16 space-y-20">
+        {/* Service Sections with Images */}
+        <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-16 space-y-24">
           {services.map((service, index) => {
             const Icon = service.icon;
             const isEven = index % 2 === 1;
@@ -184,44 +199,58 @@ export default function ServicesPage() {
               <section
                 key={service.title}
                 className={`flex flex-col ${
-                  isEven ? "md:flex-row-reverse" : "md:flex-row"
-                } gap-10 items-start`}
+                  isEven ? "lg:flex-row-reverse" : "lg:flex-row"
+                } gap-10 items-center`}
               >
-                <div className="md:w-1/3 flex flex-col items-center md:items-start text-center md:text-left">
-                  <div className="w-16 h-16 rounded-xl bg-red-600 flex items-center justify-center mb-4">
-                    <Icon className="w-8 h-8 text-white" />
+                {/* Image */}
+                <div className="lg:w-1/2 w-full">
+                  <div className="relative rounded-2xl overflow-hidden shadow-xl aspect-[4/3]">
+                    <Image
+                      src={service.image}
+                      alt={service.title}
+                      fill
+                      className="object-cover"
+                      sizes="(max-width: 1024px) 100vw, 50vw"
+                    />
+                    <div className="absolute inset-0 bg-gradient-to-t from-black/30 to-transparent" />
+                    <div className="absolute bottom-4 left-4">
+                      <div className="w-12 h-12 rounded-xl bg-red-600 flex items-center justify-center shadow-lg">
+                        <Icon className="w-6 h-6 text-white" />
+                      </div>
+                    </div>
                   </div>
-                  <h2 className="text-2xl font-bold text-gray-900 mb-2">
-                    {service.title}
-                  </h2>
                 </div>
 
-                <div className="md:w-2/3">
-                  <p className="text-gray-600 leading-relaxed mb-6">
+                {/* Content */}
+                <div className="lg:w-1/2">
+                  <h2 className="text-2xl font-bold text-gray-900 mb-3">
+                    {service.title}
+                  </h2>
+                  <p className="text-gray-600 leading-relaxed mb-5">
                     {service.description}
                   </p>
 
                   {service.extra && (
-                    <p className="text-gray-600 leading-relaxed mb-6 italic">
+                    <p className="text-sm text-gray-500 leading-relaxed mb-5 bg-gray-50 rounded-lg px-4 py-3 border-l-4 border-red-600">
                       {service.extra}
                     </p>
                   )}
 
-                  <ul className="grid grid-cols-1 sm:grid-cols-2 gap-x-6 gap-y-2 mb-6">
+                  <ul className="grid grid-cols-1 sm:grid-cols-2 gap-x-6 gap-y-2.5 mb-6">
                     {service.items.map((item) => (
                       <li
                         key={item}
-                        className="flex items-center gap-2 text-gray-700"
+                        className="flex items-center gap-2.5 text-gray-700"
                       >
                         <span className="w-1.5 h-1.5 rounded-full bg-red-600 shrink-0" />
-                        {item}
+                        <span className="text-sm">{item}</span>
                       </li>
                     ))}
                   </ul>
 
                   <Link
                     href="/contact"
-                    className="inline-flex items-center gap-2 text-red-600 font-semibold hover:text-red-700 transition-colors"
+                    className="inline-flex items-center gap-2 bg-red-600 text-white px-6 py-3 rounded-lg text-sm font-semibold hover:bg-red-700 transition-colors shadow-md shadow-red-600/20"
                   >
                     Request a Quote
                     <ArrowRight className="w-4 h-4" />
@@ -232,21 +261,30 @@ export default function ServicesPage() {
           })}
         </div>
 
-        {/* Retaining Wall Repair & Insurance */}
-        <section className="bg-gray-50 py-16">
-          <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div className="grid grid-cols-1 lg:grid-cols-2 gap-10">
+        {/* Retaining Wall Repair & Insurance — with texture background */}
+        <section className="relative overflow-hidden py-16">
+          <div className="absolute inset-0">
+            <Image
+              src="/textures/paver-herringbone.jpg"
+              alt=""
+              fill
+              className="object-cover"
+            />
+            <div className="absolute inset-0 bg-black/85" />
+          </div>
+          <div className="relative max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
               {/* Repair & Replacement */}
-              <div className="bg-white rounded-2xl border border-gray-200 p-8">
+              <div className="bg-white/10 backdrop-blur-sm rounded-2xl border border-white/20 p-8">
                 <div className="flex items-center gap-3 mb-4">
                   <div className="w-12 h-12 rounded-xl bg-red-600 flex items-center justify-center">
                     <Wrench className="w-6 h-6 text-white" />
                   </div>
-                  <h2 className="text-xl font-bold text-gray-900">
+                  <h2 className="text-xl font-bold text-white">
                     Retaining Wall Repair & Replacement
                   </h2>
                 </div>
-                <p className="text-gray-600 leading-relaxed">
+                <p className="text-gray-300 leading-relaxed">
                   Many homeowners contact us when an existing retaining wall
                   begins to lean, crack, or fail. Wall Works Hardscape evaluates
                   failing retaining walls and provides options for structural
@@ -256,16 +294,16 @@ export default function ServicesPage() {
               </div>
 
               {/* Insurance Claims */}
-              <div className="bg-white rounded-2xl border border-gray-200 p-8">
+              <div className="bg-white/10 backdrop-blur-sm rounded-2xl border border-white/20 p-8">
                 <div className="flex items-center gap-3 mb-4">
-                  <div className="w-12 h-12 rounded-xl bg-gray-900 flex items-center justify-center">
-                    <Shield className="w-6 h-6 text-white" />
+                  <div className="w-12 h-12 rounded-xl bg-white flex items-center justify-center">
+                    <Shield className="w-6 h-6 text-gray-900" />
                   </div>
-                  <h2 className="text-xl font-bold text-gray-900">
+                  <h2 className="text-xl font-bold text-white">
                     Insurance Claim Retaining Wall Repairs
                   </h2>
                 </div>
-                <p className="text-gray-600 leading-relaxed">
+                <p className="text-gray-300 leading-relaxed">
                   Retaining walls can fail due to heavy rainfall, drainage
                   issues, soil movement, or aging construction methods. In some
                   situations, repairs or replacements may qualify for homeowner
@@ -299,7 +337,7 @@ export default function ServicesPage() {
               {PRICING_TIERS.map((tier) => (
                 <div
                   key={tier.type}
-                  className="bg-gray-50 rounded-xl border border-gray-200 p-6 text-center"
+                  className="bg-gray-50 rounded-xl border border-gray-200 p-6 text-center shadow-sm"
                 >
                   <p className="text-3xl font-bold text-red-600 mb-1">
                     {tier.range}
@@ -326,9 +364,18 @@ export default function ServicesPage() {
           </div>
         </section>
 
-        {/* Bottom CTA */}
-        <section className="bg-red-600 py-16">
-          <div className="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+        {/* Bottom CTA with texture */}
+        <section className="relative overflow-hidden py-16">
+          <div className="absolute inset-0">
+            <Image
+              src="/textures/brick-pattern.jpg"
+              alt=""
+              fill
+              className="object-cover"
+            />
+            <div className="absolute inset-0 bg-red-600/90" />
+          </div>
+          <div className="relative max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
             <h2 className="text-3xl font-bold text-white mb-4">
               Need a Custom Solution?
             </h2>
@@ -338,7 +385,7 @@ export default function ServicesPage() {
             <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
               <Link
                 href="/contact"
-                className="inline-flex items-center gap-2 bg-white text-red-600 px-8 py-3.5 rounded-lg text-lg font-medium hover:bg-red-50 transition-colors"
+                className="inline-flex items-center gap-2 bg-white text-red-600 px-8 py-3.5 rounded-lg text-lg font-medium hover:bg-red-50 transition-colors shadow-lg"
               >
                 Get Your Free Estimate <ArrowRight className="w-5 h-5" />
               </Link>
