@@ -92,41 +92,49 @@ const SYSTEMS = [
     name: "Unilock",
     description: "Pavers and residential retaining wall systems",
     url: "https://www.unilock.com",
+    logo: "/logos/unilock.svg",
   },
   {
     name: "Versa-Lok",
     description: "Engineered segmental retaining wall systems",
     url: "https://www.versa-lok.com",
+    logo: "/logos/versa-lok.svg",
   },
   {
     name: "MagnumStone",
     description: "Commercial structural retaining wall systems",
     url: "https://www.magnumstone.com",
+    logo: "/logos/magnumstone.png",
   },
   {
     name: "Keystone Hardscapes",
     description: "Compac III retaining wall system",
     url: "https://www.keystonehardscapes.com",
+    logo: "/logos/keystone.jpg",
   },
   {
     name: "Wire-Faced MSE",
     description: "Mechanically stabilized earth retaining walls",
     url: "#",
+    logo: null,
   },
   {
     name: "RECON Wall Systems",
     description: "Large-scale commercial retaining systems",
     url: "https://www.reconwalls.com",
+    logo: "/logos/recon.png",
   },
   {
     name: "Stone & Company",
     description: "ReadyRock precast retaining wall systems",
-    url: "https://www.readyrock.com",
+    url: "#",
+    logo: null,
   },
   {
     name: "Concord Wall Systems",
     description: "Patented structural retaining wall system",
-    url: "https://www.concordwall.com",
+    url: "#",
+    logo: null,
   },
 ];
 
@@ -341,10 +349,19 @@ export default function HomePage() {
                   rel={system.url !== "#" ? "noopener noreferrer" : undefined}
                   className="group block rounded-xl border border-gray-200 bg-white p-6 shadow-sm hover:shadow-md hover:border-red-200 transition-all"
                 >
-                  {/* Placeholder logo */}
-                  <div className="w-14 h-14 rounded-lg bg-gray-900 flex items-center justify-center mb-4 text-white text-xl font-bold group-hover:bg-red-600 transition-colors">
-                    {system.name.charAt(0)}
-                  </div>
+                  {system.logo ? (
+                    <div className="w-full h-14 flex items-center justify-start mb-4">
+                      <img
+                        src={system.logo}
+                        alt={`${system.name} logo`}
+                        className="h-10 w-auto max-w-[140px] object-contain"
+                      />
+                    </div>
+                  ) : (
+                    <div className="w-14 h-14 rounded-lg bg-gray-900 flex items-center justify-center mb-4 text-white text-xl font-bold group-hover:bg-red-600 transition-colors">
+                      {system.name.charAt(0)}
+                    </div>
+                  )}
                   <div className="flex items-center gap-1 mb-1">
                     <h3 className="text-base font-semibold text-gray-900">
                       {system.name}
