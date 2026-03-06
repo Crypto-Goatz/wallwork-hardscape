@@ -4,7 +4,6 @@ import { useState } from "react";
 import Link from "next/link";
 import Image from "next/image";
 import { Menu, X, Phone } from "lucide-react";
-import { getPublicUrl } from "@/lib/drive-utils";
 
 const NAV_LINKS = [
   { href: "/", label: "Home" },
@@ -22,26 +21,22 @@ interface HeaderProps {
   logoImageId?: string;
 }
 
-export function Header({ siteName, phone, logoImageId }: HeaderProps) {
+export function Header({ siteName, phone }: HeaderProps) {
   const [mobileOpen, setMobileOpen] = useState(false);
 
   return (
-    <header className="sticky top-0 z-50 bg-white/95 backdrop-blur-sm border-b border-gray-100">
+    <header className="sticky top-0 z-50 bg-black/95 backdrop-blur-sm border-b border-white/10">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex items-center justify-between h-16">
-          <Link href="/" className="flex items-center gap-2 text-xl font-bold text-gray-900">
-            {logoImageId ? (
-              <Image
-                src={getPublicUrl(logoImageId)}
-                alt={siteName}
-                width={140}
-                height={40}
-                className="h-10 w-auto object-contain"
-                unoptimized
-              />
-            ) : (
-              siteName
-            )}
+          <Link href="/" className="flex items-center gap-2">
+            <Image
+              src="/logo.png"
+              alt={siteName}
+              width={160}
+              height={44}
+              className="h-10 w-auto object-contain"
+              priority
+            />
           </Link>
 
           {/* Desktop nav */}
@@ -50,7 +45,7 @@ export function Header({ siteName, phone, logoImageId }: HeaderProps) {
               <Link
                 key={link.href}
                 href={link.href}
-                className="px-3 py-2 text-sm font-medium text-gray-600 hover:text-red-600 rounded-md transition-colors"
+                className="px-3 py-2 text-sm font-medium text-gray-300 hover:text-white transition-colors"
               >
                 {link.label}
               </Link>
@@ -61,7 +56,7 @@ export function Header({ siteName, phone, logoImageId }: HeaderProps) {
             {phone && (
               <a
                 href={`tel:${phone.replace(/\D/g, "")}`}
-                className="flex items-center gap-1.5 text-sm font-medium text-red-600 hover:text-red-700"
+                className="flex items-center gap-1.5 text-sm font-medium text-red-500 hover:text-red-400"
               >
                 <Phone className="w-4 h-4" />
                 {phone}
@@ -78,7 +73,7 @@ export function Header({ siteName, phone, logoImageId }: HeaderProps) {
           {/* Mobile menu button */}
           <button
             onClick={() => setMobileOpen(!mobileOpen)}
-            className="md:hidden p-2 text-gray-600"
+            className="md:hidden p-2 text-gray-300"
             aria-label="Toggle menu"
           >
             {mobileOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
@@ -88,14 +83,14 @@ export function Header({ siteName, phone, logoImageId }: HeaderProps) {
 
       {/* Mobile nav */}
       {mobileOpen && (
-        <div className="md:hidden border-t border-gray-100 bg-white">
+        <div className="md:hidden border-t border-white/10 bg-black">
           <nav className="px-4 py-3 space-y-1">
             {NAV_LINKS.map((link) => (
               <Link
                 key={link.href}
                 href={link.href}
                 onClick={() => setMobileOpen(false)}
-                className="block px-3 py-2 text-base font-medium text-gray-600 hover:text-red-600 rounded-md"
+                className="block px-3 py-2 text-base font-medium text-gray-300 hover:text-white rounded-md"
               >
                 {link.label}
               </Link>
@@ -103,7 +98,7 @@ export function Header({ siteName, phone, logoImageId }: HeaderProps) {
             {phone && (
               <a
                 href={`tel:${phone.replace(/\D/g, "")}`}
-                className="flex items-center gap-2 px-3 py-2 text-base font-medium text-red-600"
+                className="flex items-center gap-2 px-3 py-2 text-base font-medium text-red-500"
               >
                 <Phone className="w-4 h-4" />
                 {phone}
