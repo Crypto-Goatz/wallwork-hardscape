@@ -242,13 +242,12 @@ export default function HomePage() {
           <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-6">
             <div className="flex flex-col sm:flex-row items-center justify-between gap-4">
               <div className="flex items-center gap-4">
-                <div className="flex items-center justify-center w-14 h-14 rounded-2xl bg-red-600 text-white shrink-0 shadow-lg shadow-red-600/30">
-                  <span className="text-2xl font-black">$500</span>
-                </div>
+                <img
+                  src="/homeshow-bonus.png"
+                  alt="$500 Home Show Bonus"
+                  className="h-12 sm:h-14 w-auto shrink-0"
+                />
                 <div>
-                  <p className="text-white font-bold text-lg leading-tight">
-                    Pittsburgh Home &amp; Garden Show
-                  </p>
                   <p className="text-gray-400 text-sm">
                     March 7&ndash;15 &mdash; Get a <span className="text-red-400 font-semibold">$500 Visa Gift Card</span> with any project over $7,500
                   </p>
