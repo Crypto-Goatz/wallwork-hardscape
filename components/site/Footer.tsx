@@ -58,7 +58,6 @@ export function Footer({ siteName, phone, email, logoImageId }: FooterProps) {
                 { href: "/services", label: "Services" },
                 { href: "/portfolio", label: "Portfolio" },
                 { href: "/contact", label: "Contact" },
-                { href: "/blog", label: "Blog" },
               ].map((link) => (
                 <Link
                   key={link.href}

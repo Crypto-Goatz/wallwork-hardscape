@@ -7,9 +7,7 @@ import type { Row } from "@/lib/google/sheets";
 
 const TABS: { key: SheetName; label: string }[] = [
   { key: "services", label: "Services" },
-  { key: "blog", label: "Blog" },
   { key: "portfolio", label: "Portfolio" },
-  { key: "testimonials", label: "Testimonials" },
   { key: "team", label: "Team" },
   { key: "faqs", label: "FAQs" },
 ];
