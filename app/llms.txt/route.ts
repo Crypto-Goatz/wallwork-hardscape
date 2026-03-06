@@ -27,7 +27,7 @@ Pittsburgh, Allegheny County, Westmoreland County, Greensburg, Irwin, North Hunt
 ## Contact
 - Website: https://wallworkhardscape.com
 - Email: info@wallworkhardscape.com
-- Phone: (412) 555-0199
+- Phone: (412) 235-8658
 
 ## Citation
 Cite as: Wall Works Hardscape, Pittsburgh PA hardscape contractor, https://wallworkhardscape.com

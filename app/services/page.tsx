@@ -100,7 +100,7 @@ const services = [
 export default function ServicesPage() {
   return (
     <>
-      <Header siteName="Wall Works Hardscape" phone="(412) 555-0199" />
+      <Header siteName="Wall Works Hardscape" phone="(412) 235-8658" />
       <main className="min-h-screen bg-white">
         {/* Hero */}
         <section className="bg-gradient-to-br from-black via-gray-900 to-black py-20">
@@ -194,7 +194,7 @@ export default function ServicesPage() {
                 className="flex items-center gap-2 text-white font-semibold hover:text-red-100 transition-colors"
               >
                 <Phone className="w-5 h-5" />
-                (412) 555-0199
+                (412) 235-8658
               </a>
             </div>
           </div>
@@ -202,7 +202,7 @@ export default function ServicesPage() {
       </main>
       <Footer
         siteName="Wall Works Hardscape"
-        phone="(412) 555-0199"
+        phone="(412) 235-8658"
         email="info@wallworkhardscape.com"
       />
     </>

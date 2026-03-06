@@ -42,7 +42,7 @@ const DIFFERENTIATORS = [
 export default function AboutPage() {
   return (
     <>
-      <Header siteName="Wall Works Hardscape" phone="(412) 555-0199" />
+      <Header siteName="Wall Works Hardscape" phone="(412) 235-8658" />
 
       <main className="min-h-screen">
         {/* Hero */}
@@ -156,7 +156,7 @@ export default function AboutPage() {
 
       <Footer
         siteName="Wall Works Hardscape"
-        phone="(412) 555-0199"
+        phone="(412) 235-8658"
         email="info@wallworkhardscape.com"
       />
     </>

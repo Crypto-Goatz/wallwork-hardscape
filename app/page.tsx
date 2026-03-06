@@ -148,7 +148,7 @@ const SERVICE_AREAS = [
 export default function HomePage() {
   return (
     <>
-      <Header siteName="Wall Works Hardscape" phone="(412) 555-0199" />
+      <Header siteName="Wall Works Hardscape" phone="(412) 235-8658" />
 
       <main>
         {/* JSON-LD Structured Data */}
@@ -160,7 +160,7 @@ export default function HomePage() {
               "@type": "HomeAndConstructionBusiness",
               name: "Wall Works Hardscape",
               url: "https://wallworkhardscape.com",
-              telephone: "(412) 555-0199",
+              telephone: "(412) 235-8658",
               email: "info@wallworkhardscape.com",
               description:
                 "Licensed and insured hardscape contractor serving Pittsburgh, Allegheny County, and Westmoreland County. Services include retaining walls, paver patios, excavation, concrete, and masonry.",
@@ -212,7 +212,7 @@ export default function HomePage() {
                   className="inline-flex items-center justify-center gap-2 border-2 border-white/30 text-white px-8 py-3.5 rounded-lg text-lg font-medium hover:bg-white/10 transition-colors"
                 >
                   <Phone className="w-5 h-5" />
-                  Call (412) 555-0199
+                  Call (412) 235-8658
                 </a>
               </div>
             </div>
@@ -416,7 +416,7 @@ export default function HomePage() {
 
       <Footer
         siteName="Wall Works Hardscape"
-        phone="(412) 555-0199"
+        phone="(412) 235-8658"
         email="info@wallworkhardscape.com"
       />
     </>

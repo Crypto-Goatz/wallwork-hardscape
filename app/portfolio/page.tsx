@@ -152,7 +152,7 @@ const PORTFOLIO_ITEMS = [
 export default function PortfolioPage() {
   return (
     <>
-      <Header siteName="Wall Works Hardscape" phone="(412) 555-0199" />
+      <Header siteName="Wall Works Hardscape" phone="(412) 235-8658" />
       <main className="min-h-screen">
         <section className="bg-gradient-to-br from-black via-gray-900 to-black py-20">
           <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
@@ -174,7 +174,7 @@ export default function PortfolioPage() {
       </main>
       <Footer
         siteName="Wall Works Hardscape"
-        phone="(412) 555-0199"
+        phone="(412) 235-8658"
         email="info@wallworkhardscape.com"
       />
     </>
