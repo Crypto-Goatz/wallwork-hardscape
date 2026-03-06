@@ -139,15 +139,21 @@ export function EstimateWizard() {
         .filter(Boolean)
         .join("\n");
 
-      const res = await fetch("/api/content", {
+      const res = await fetch("/api/webhook", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({
-          type: "contact_submission",
           firstName,
           lastName,
           email: form.email,
           phone: form.phone,
+          address: form.address,
+          projectTypes: projectLabels.join(", "),
+          otherType: form.otherType || "",
+          description: form.description || "",
+          timeline: timelineLabel,
+          stage: stageLabel,
+          source: "wallworkshardscape.com",
           message,
         }),
       });

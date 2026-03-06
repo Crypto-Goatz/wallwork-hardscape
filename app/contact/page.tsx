@@ -56,7 +56,7 @@ export default function ContactPage() {
                       </div>
                     </a>
                     <a
-                      href="mailto:info@wallworkhardscape.com"
+                      href="mailto:wallworkshardscape@gmail.com"
                       className="flex items-center gap-3 group"
                     >
                       <div className="flex items-center justify-center w-11 h-11 rounded-xl bg-gray-100 text-gray-600 group-hover:bg-gray-200 transition-colors">
@@ -65,7 +65,7 @@ export default function ContactPage() {
                       <div>
                         <p className="text-sm text-gray-500">Email</p>
                         <p className="text-sm font-semibold text-gray-900 group-hover:text-red-600 transition-colors">
-                          info@wallworkhardscape.com
+                          Request by Email
                         </p>
                       </div>
                     </a>
@@ -143,7 +143,7 @@ export default function ContactPage() {
       <Footer
         siteName="Wall Works Hardscape"
         phone="(412) 235-8658"
-        email="info@wallworkhardscape.com"
+        email="wallworkshardscape@gmail.com"
       />
     </>
   );
