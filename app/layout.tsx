@@ -2,7 +2,6 @@ import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
 import Script from "next/script";
 import { getSiteConfig } from "@/config/site.config";
-import { CookieBanner } from "@/components/site/CookieBanner";
 import "./globals.css";
 
 const geistSans = Geist({
@@ -15,13 +14,31 @@ const geistMono = Geist_Mono({
   subsets: ["latin"],
 });
 
-export async function generateMetadata(): Promise<Metadata> {
-  const config = await getSiteConfig();
-  return {
-    title: config.name || "Rocket Client Site",
-    description: `Professional services by ${config.name || "our team"}. Quality work, fair prices, satisfaction guaranteed.`,
-  };
-}
+export const metadata: Metadata = {
+  title: "Wall Works Hardscape | Hardscape Contractor in Pittsburgh",
+  description:
+    "Wall Works Hardscape is a licensed and insured hardscape contractor serving Pittsburgh, Allegheny County, and Westmoreland County. Services include retaining walls, paver patios, excavation, concrete, and masonry.",
+  keywords: [
+    "hardscape contractor pittsburgh",
+    "retaining wall contractor",
+    "paver patio installation",
+    "excavation contractor",
+    "concrete contractor pittsburgh",
+    "masonry restoration",
+    "Wall Works Hardscape",
+    "retaining wall cost pittsburgh",
+    "outdoor living contractor near me",
+    "drainage contractor westmoreland county",
+  ],
+  openGraph: {
+    title: "Wall Works Hardscape | Hardscape Contractor in Pittsburgh",
+    description:
+      "Licensed and insured hardscape contractor serving Pittsburgh and surrounding communities. Retaining walls, paver patios, excavation, concrete, and masonry.",
+    url: "https://wallworkhardscape.com",
+    siteName: "Wall Works Hardscape",
+    type: "website",
+  },
+};
 
 export default async function RootLayout({
   children,
@@ -45,7 +62,6 @@ export default async function RootLayout({
         style={colorStyles}
       >
         {children}
-        <CookieBanner />
 
         {/* CRO9 Analytics Tracker */}
         {cro9Key && (

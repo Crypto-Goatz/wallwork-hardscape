@@ -10,7 +10,6 @@
   },
   "dependencies": {
     "@google/generative-ai": "^0.24.1",
-    "resend": "^4.0.0",
     "clsx": "^2.1.1",
     "googleapis": "^171.4.0",
     "jszip": "^3.10.1",

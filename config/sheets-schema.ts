@@ -5,23 +5,6 @@
  */
 
 export const SHEETS_SCHEMA = {
-  leads: {
-    description: "Estimate request leads from the website contact form",
-    columns: [
-      "id",
-      "submitted_at",
-      "first_name",
-      "last_name",
-      "email",
-      "phone",
-      "address",
-      "project_types",
-      "description",
-      "timeline",
-      "project_stage",
-      "status",
-    ],
-  },
   site_config: {
     description: "Key-value pairs for site configuration",
     columns: ["key", "value"],
@@ -77,10 +60,6 @@ export const SHEETS_SCHEMA = {
   seo: {
     description: "Per-page SEO metadata overrides",
     columns: ["page_path", "title", "description", "og_image_id"],
-  },
-  page_content: {
-    description: "Editable text blocks for each page (hero, about, home, etc.)",
-    columns: ["id", "page", "section", "heading", "body", "cta_label", "cta_href"],
   },
   custom_apps: {
     description: "Custom app/tool definitions (JSON-driven pages)",

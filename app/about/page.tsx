@@ -1,134 +1,164 @@
 import { Header } from "@/components/site/Header";
 import { Footer } from "@/components/site/Footer";
-import { Hero } from "@/components/site/Hero";
-import { FadeIn } from "@/components/site/FadeIn";
-import { getSiteConfig } from "@/config/site.config";
-import { getSheetData } from "@/lib/google/sheets";
-import { getPublicUrl } from "@/lib/drive-utils";
-import Image from "next/image";
 import Link from "next/link";
-import { ArrowRight, Phone } from "lucide-react";
+import { Shield, FileText, Building2, MapPin, ArrowRight } from "lucide-react";
 
-export const revalidate = 300;
+const SERVICE_AREAS = [
+  "Pittsburgh",
+  "Allegheny County",
+  "Westmoreland County",
+  "Greensburg",
+  "Irwin",
+  "North Huntingdon",
+  "Monroeville",
+  "Murrysville",
+  "Latrobe",
+  "Plum",
+  "Wexford",
+  "Cranberry Township",
+];
 
-export default async function AboutPage() {
-  const config = await getSiteConfig();
-  let teamMembers: Record<string, string>[] = [];
+const DIFFERENTIATORS = [
+  {
+    icon: Shield,
+    title: "Engineered Solutions",
+    description:
+      "We install manufacturer-engineered retaining wall systems from trusted brands including Unilock, Versa-Lok, MagnumStone, Keystone, RECON, Concord, and Stone & Company.",
+  },
+  {
+    icon: FileText,
+    title: "Detailed Estimates",
+    description:
+      "Every estimate is itemized so you understand what\u2019s included \u2014 materials, labor, drainage, reinforcement, and engineering requirements.",
+  },
+  {
+    icon: Building2,
+    title: "Residential & Commercial",
+    description:
+      "From backyard patios to commercial site development, we have the equipment and expertise for projects of any scale.",
+  },
+];
 
-  try {
-    teamMembers = await getSheetData("team");
-  } catch {
-    // Sheets not configured
-  }
-
+export default function AboutPage() {
   return (
     <>
-      <Header siteName={config.name} phone={config.phone} logoImageId={config.logoImageId} />
-      <main className="min-h-screen">
-        <Hero
-          minimal
-          title={`About ${config.name}`}
-          subtitle="Built on integrity, craftsmanship, and a passion for transforming outdoor spaces across Pittsburgh and the surrounding areas."
-          phone={config.phone}
-          eyebrow="Our Story"
-          imageUrl="/hero-retaining-wall.jpg"
-          ctaLabel="Request a Free Estimate"
-        />
+      <Header siteName="Wall Works Hardscape" phone="(412) 555-0199" />
 
-        {/* Mission section */}
-        <section className="py-20 bg-background">
-          <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
-              <FadeIn direction="up" delay={0}>
-                <div>
-                  <p className="text-xs uppercase tracking-widest text-red-600 font-semibold mb-3">Who We Are</p>
-                  <h2 className="text-3xl font-bold text-foreground mb-5">
-                    Pittsburgh&apos;s Trusted Hardscape Specialists
-                  </h2>
-                  <p className="text-muted-foreground leading-relaxed mb-4">
-                    Wall Works Hardscape LLC has been transforming outdoor spaces throughout the Pittsburgh region for years. We specialize in retaining walls, paver patios, outdoor kitchens, concrete driveways, and much more.
-                  </p>
-                  <p className="text-muted-foreground leading-relaxed">
-                    Every project we take on is treated with the same level of care and craftsmanship — from a small garden wall to a full outdoor living renovation.
-                  </p>
-                </div>
-              </FadeIn>
-              <FadeIn direction="up" delay={100}>
-                <div className="rounded-2xl overflow-hidden shadow-lg aspect-[4/3] relative bg-gray-100">
-                  <Image
-                    src="/hero-patio.jpg"
-                    alt="Wall Works Hardscape patio project"
-                    fill
-                    className="object-cover"
-                    unoptimized
-                  />
-                </div>
-              </FadeIn>
+      <main className="min-h-screen">
+        {/* Hero */}
+        <section className="bg-gradient-to-br from-black via-gray-900 to-black text-white py-20">
+          <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+            <h1 className="text-4xl font-bold tracking-tight sm:text-5xl mb-6">
+              About Wall Works Hardscape
+            </h1>
+            <p className="text-lg text-gray-300 max-w-2xl mx-auto">
+              Licensed and insured hardscape contractor serving Pittsburgh and
+              Western Pennsylvania.
+            </p>
+          </div>
+        </section>
+
+        {/* Our Story */}
+        <section className="py-16 sm:py-20">
+          <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+            <h2 className="text-3xl font-bold text-gray-900 mb-6">Our Story</h2>
+            <div className="space-y-4 text-gray-600 text-lg leading-relaxed">
+              <p>
+                Wall Works Hardscape is a locally owned and operated hardscape
+                contractor serving Pittsburgh, Allegheny County, Westmoreland
+                County, and surrounding communities. We specialize in engineered
+                retaining wall systems, paver patio installation, excavation
+                services, concrete construction, and masonry restoration.
+              </p>
+              <p>
+                Every project we take on receives the same level of attention to
+                detail &mdash; from proper base preparation and drainage to
+                selecting the right engineered system for the job. We provide
+                detailed, itemized estimates so our customers know exactly what
+                is required to build a safe and long-lasting result.
+              </p>
             </div>
           </div>
         </section>
 
-        {teamMembers.length > 0 && (
-          <section className="py-20 bg-muted/40">
-            <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
-              <FadeIn direction="up">
-                <h2 className="text-3xl font-bold text-foreground text-center mb-12">
-                  Meet Our Team
-                </h2>
-              </FadeIn>
-              <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
-                {teamMembers.map((member, i) => (
-                  <FadeIn key={member.id || i} direction="up" delay={i * 80}>
-                    <div className="rounded-xl border border-border bg-card p-6 shadow-sm text-center">
-                      {member.image_id && (
-                        <div className="relative w-28 h-28 mx-auto mb-4 rounded-full overflow-hidden bg-gray-100">
-                          <Image
-                            src={getPublicUrl(member.image_id)}
-                            alt={member.name || "Team member"}
-                            fill
-                            className="object-cover"
-                            unoptimized
-                          />
-                        </div>
-                      )}
-                      <h3 className="text-lg font-semibold text-foreground">{member.name}</h3>
-                      {member.role && (
-                        <p className="text-sm font-medium text-red-600 mt-1">{member.role}</p>
-                      )}
-                      {member.bio && (
-                        <p className="text-sm text-muted-foreground mt-3 leading-relaxed">{member.bio}</p>
-                      )}
-                    </div>
-                  </FadeIn>
-                ))}
-              </div>
+        {/* What Sets Us Apart */}
+        <section className="py-16 sm:py-20 bg-gray-50">
+          <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+            <h2 className="text-3xl font-bold text-gray-900 text-center mb-12">
+              What Sets Us Apart
+            </h2>
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+              {DIFFERENTIATORS.map((item) => (
+                <div
+                  key={item.title}
+                  className="bg-white rounded-xl border border-gray-200 p-8 shadow-sm"
+                >
+                  <div className="flex h-12 w-12 items-center justify-center rounded-lg bg-red-600 text-white mb-5">
+                    <item.icon className="w-6 h-6" />
+                  </div>
+                  <h3 className="text-xl font-semibold text-gray-900 mb-3">
+                    {item.title}
+                  </h3>
+                  <p className="text-gray-600 leading-relaxed">
+                    {item.description}
+                  </p>
+                </div>
+              ))}
             </div>
-          </section>
-        )}
+          </div>
+        </section>
+
+        {/* Service Areas */}
+        <section className="py-16 sm:py-20">
+          <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+            <h2 className="text-3xl font-bold text-gray-900 text-center mb-4">
+              Proudly Serving
+            </h2>
+            <p className="text-gray-600 text-center mb-10 max-w-2xl mx-auto">
+              Wall Works Hardscape serves homeowners, businesses, and developers
+              across the greater Pittsburgh region.
+            </p>
+            <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-4">
+              {SERVICE_AREAS.map((area) => (
+                <div
+                  key={area}
+                  className="flex items-center gap-2 bg-gray-50 rounded-lg px-4 py-3 border border-gray-200"
+                >
+                  <MapPin className="w-4 h-4 text-red-600 shrink-0" />
+                  <span className="text-sm font-medium text-gray-700">
+                    {area}
+                  </span>
+                </div>
+              ))}
+            </div>
+          </div>
+        </section>
 
         {/* CTA */}
-        <section className="py-16 sm:py-20 bg-foreground text-white">
-          <FadeIn direction="up">
-            <div className="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-              <h2 className="text-3xl font-bold mb-4">Start Your Project Today</h2>
-              <p className="text-white/70 text-lg mb-8">
-                Let&apos;s build something beautiful together. Request your free, no-obligation estimate.
-              </p>
-              <Link
-                href="/contact"
-                className="inline-flex items-center gap-2 bg-red-600 text-white px-8 py-3.5 rounded-lg text-base font-semibold hover:bg-red-500 transition-colors"
-              >
-                Get a Free Quote <ArrowRight className="w-5 h-5" />
-              </Link>
-              <p className="mt-4 flex items-center justify-center gap-2 text-white/50 text-sm">
-                <Phone className="w-4 h-4" strokeWidth={1.5} />
-                Or call us: <a href={`tel:${config.phone.replace(/\D/g, "")}`} className="font-semibold text-white/80 hover:text-white transition-colors">{config.phone}</a>
-              </p>
-            </div>
-          </FadeIn>
+        <section className="py-16 sm:py-20 bg-red-600 text-white">
+          <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+            <h2 className="text-3xl font-bold mb-4">
+              Ready to Discuss Your Project?
+            </h2>
+            <p className="text-red-100 text-lg mb-8 max-w-2xl mx-auto">
+              Contact Wall Works Hardscape today for a free, detailed estimate.
+              Licensed and insured for residential and commercial projects.
+            </p>
+            <Link
+              href="/contact"
+              className="inline-flex items-center gap-2 bg-white text-red-600 px-8 py-3.5 rounded-lg text-lg font-medium hover:bg-red-50 transition-colors"
+            >
+              Get a Free Estimate <ArrowRight className="w-5 h-5" />
+            </Link>
+          </div>
         </section>
       </main>
-      <Footer siteName={config.name} phone={config.phone} email={config.email} logoImageId={config.logoImageId} />
+
+      <Footer
+        siteName="Wall Works Hardscape"
+        phone="(412) 555-0199"
+        email="info@wallworkhardscape.com"
+      />
     </>
   );
 }

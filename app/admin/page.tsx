@@ -2,7 +2,7 @@ import { getIntegrationStatus, isSetupComplete } from "@/lib/config";
 import { Card, CardHeader, CardTitle, CardContent } from "@/components/ui/card";
 import Link from "next/link";
 import { redirect } from "next/navigation";
-import { CheckCircle2, XCircle, FileText, Image, BarChart3, Settings, Inbox } from "lucide-react";
+import { CheckCircle2, XCircle, FileText, Image, Bot, BarChart3, Settings, Activity, Blocks } from "lucide-react";
 
 export default async function AdminDashboardPage() {
   if (!(await isSetupComplete())) redirect("/admin/setup");
@@ -12,15 +12,18 @@ export default async function AdminDashboardPage() {
   const integrations = [
     { name: "Google Sheets", key: "googleSheets" as const, description: "Content management via Sheets" },
     { name: "Google Drive", key: "googleDrive" as const, description: "Media storage and management" },
+    { name: "Gemini AI", key: "gemini" as const, description: "AI content generation" },
     { name: "CRO9 Analytics", key: "cro9" as const, description: "Analytics and behavior tracking" },
     { name: "CRM", key: "crm" as const, description: "Customer relationship management" },
   ];
 
   const quickLinks = [
     { href: "/admin/content", label: "Content Manager", icon: FileText, description: "Edit site content via Google Sheets" },
-    { href: "/admin/leads", label: "Leads & Contacts", icon: Inbox, description: "View estimate requests and leads" },
     { href: "/admin/media", label: "Media Library", icon: Image, description: "Upload and manage images" },
+    { href: "/admin/ai", label: "AI Writer", icon: Bot, description: "Generate content with AI" },
     { href: "/admin/analytics", label: "Analytics", icon: BarChart3, description: "View site performance" },
+    { href: "/admin/apps", label: "Apps", icon: Blocks, description: "Create and manage custom tools" },
+    { href: "/admin/sxo", label: "SXO Panel", icon: Activity, description: "Behavioral data and search experience" },
     { href: "/admin/settings", label: "Settings", icon: Settings, description: "Configure integrations" },
   ];
 

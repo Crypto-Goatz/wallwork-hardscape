@@ -1,178 +1,423 @@
 import { Header } from "@/components/site/Header";
 import { Footer } from "@/components/site/Footer";
-import { Hero } from "@/components/site/Hero";
-import { ServiceCard } from "@/components/site/ServiceCard";
-import { TestimonialCard } from "@/components/site/TestimonialCard";
-import { FadeIn } from "@/components/site/FadeIn";
-import { getSiteConfig } from "@/config/site.config";
-import { getSheetData } from "@/lib/google/sheets";
 import Link from "next/link";
-import { ArrowRight, Phone } from "lucide-react";
+import {
+  ArrowRight,
+  Phone,
+  MapPin,
+  Hammer,
+  Layers,
+  Shovel,
+  Droplets,
+  HardHat,
+  Landmark,
+  CheckCircle2,
+  ExternalLink,
+} from "lucide-react";
 
-const PLACEHOLDER_TESTIMONIALS = [
+const SERVICES = [
   {
-    id: "p1",
-    name: "Brian M.",
-    role: "Homeowner — Mt. Lebanon, PA",
-    text: "Wall Works completely transformed our backyard. The retaining wall they built is solid, beautiful, and exactly what we envisioned. The crew was professional, on time, and cleaned up every day. Highly recommend.",
-    rating: "5",
+    icon: Hammer,
+    title: "Hardscaping & Outdoor Living",
+    description:
+      "Paver patios, outdoor kitchens, landscape walls, and decorative hardscape features that improve property value.",
   },
   {
-    id: "p2",
-    name: "Stephanie R.",
-    role: "Homeowner — Peters Township, PA",
-    text: "We had a massive erosion problem on our hillside property. Wall Works came out, assessed the situation, and built a tiered boulder wall system that solved everything. Honestly exceeded our expectations.",
-    rating: "5",
+    icon: Layers,
+    title: "Retaining Wall Installation",
+    description:
+      "Engineered retaining wall systems for residential and commercial projects using Unilock, Versa-Lok, MagnumStone, and more.",
   },
   {
-    id: "p3",
-    name: "Dave & Lisa T.",
-    role: "Homeowners — Upper St. Clair, PA",
-    text: "From the estimate to the final walkthrough, everything was seamless. Our paver patio and outdoor kitchen came out stunning. We use it every weekend. Worth every penny.",
-    rating: "5",
+    icon: Shovel,
+    title: "Excavation Services",
+    description:
+      "Site preparation, trenching, utility excavation, foundation footers, grading, and drainage installation.",
+  },
+  {
+    icon: HardHat,
+    title: "Concrete & Masonry",
+    description:
+      "Driveway installation, concrete flatwork, brick and block construction, stone veneer, masonry restoration.",
+  },
+  {
+    icon: Droplets,
+    title: "Grading & Drainage",
+    description:
+      "Yard grading, stormwater control, drainage correction, and slope stabilization for residential and commercial sites.",
+  },
+  {
+    icon: Landmark,
+    title: "Property Repairs & Maintenance",
+    description:
+      "Masonry repointing, structural repairs, and ongoing property maintenance to protect your investment.",
   },
 ];
 
-export const revalidate = 300;
+const PRICING_TIERS = [
+  {
+    title: "Wire Basket / Boulder",
+    range: "$50–$80",
+    unit: "per sq ft",
+    description: "Gabion or boulder retaining walls",
+  },
+  {
+    title: "Segmental Concrete Block",
+    range: "$65–$120+",
+    unit: "per sq ft",
+    description:
+      "With proper base preparation, drainage stone, and geogrid reinforcement",
+  },
+  {
+    title: "Concrete / Masonry",
+    range: "$100–$130+",
+    unit: "per sq ft",
+    description: "Poured footers and veneer finishes",
+  },
+];
 
-export default async function HomePage() {
-  const config = await getSiteConfig();
+const COST_FACTORS = [
+  "Wall height",
+  "Excavation depth",
+  "Drainage requirements",
+  "Reinforcement grid length",
+  "Soil conditions",
+  "Equipment access",
+  "Loads above the wall (driveways, vehicles, structures)",
+  "Engineering requirements for taller walls",
+];
 
-  let services: Record<string, string>[] = [];
-  let testimonials: Record<string, string>[] = [];
+const SYSTEMS = [
+  {
+    name: "Unilock",
+    description: "Pavers and residential retaining wall systems",
+    url: "https://www.unilock.com",
+  },
+  {
+    name: "Versa-Lok",
+    description: "Engineered segmental retaining wall systems",
+    url: "https://www.versa-lok.com",
+  },
+  {
+    name: "MagnumStone",
+    description: "Commercial structural retaining wall systems",
+    url: "https://www.magnumstone.com",
+  },
+  {
+    name: "Keystone Hardscapes",
+    description: "Compac III retaining wall system",
+    url: "https://www.keystonehardscapes.com",
+  },
+  {
+    name: "Wire-Faced MSE",
+    description: "Mechanically stabilized earth retaining walls",
+    url: "#",
+  },
+  {
+    name: "RECON Wall Systems",
+    description: "Large-scale commercial retaining systems",
+    url: "https://www.reconwalls.com",
+  },
+  {
+    name: "Stone & Company",
+    description: "ReadyRock precast retaining wall systems",
+    url: "https://www.readyrock.com",
+  },
+  {
+    name: "Concord Wall Systems",
+    description: "Patented structural retaining wall system",
+    url: "https://www.concordwall.com",
+  },
+];
 
-  try {
-    services = await getSheetData("services");
-    testimonials = await getSheetData("testimonials");
-  } catch {
-    // Sheets not configured yet — render with empty data
-  }
+const SERVICE_AREAS = [
+  "Pittsburgh",
+  "Allegheny County",
+  "Westmoreland County",
+  "Greensburg",
+  "Irwin",
+  "North Huntingdon",
+  "Monroeville",
+  "Murrysville",
+  "Latrobe",
+  "Plum",
+  "Wexford",
+  "Cranberry Township",
+];
 
-  const displayTestimonials = testimonials.length > 0 ? testimonials : PLACEHOLDER_TESTIMONIALS;
-
+export default function HomePage() {
   return (
     <>
-      <Header siteName={config.name} phone={config.phone} logoImageId={config.logoImageId} />
+      <Header siteName="Wall Works Hardscape" phone="(412) 555-0199" />
 
       <main>
-        <Hero
-          title={config.name}
-          subtitle={config.tagline || "Professional hardscape services you can trust"}
-          phone={config.phone}
-          eyebrow="Pittsburgh's Premier Hardscape Contractor"
-          imageUrl="/hero-hardscape.jpg"
+        {/* JSON-LD Structured Data */}
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{
+            __html: JSON.stringify({
+              "@context": "https://schema.org",
+              "@type": "HomeAndConstructionBusiness",
+              name: "Wall Works Hardscape",
+              url: "https://wallworkhardscape.com",
+              telephone: "(412) 555-0199",
+              email: "info@wallworkhardscape.com",
+              description:
+                "Licensed and insured hardscape contractor serving Pittsburgh, Allegheny County, and Westmoreland County. Services include retaining walls, paver patios, excavation, concrete, and masonry.",
+              priceRange: "$$",
+              areaServed: SERVICE_AREAS.map((area) => ({
+                "@type": "Place",
+                name: area + ", Pennsylvania",
+              })),
+              hasOfferCatalog: {
+                "@type": "OfferCatalog",
+                name: "Hardscape Services",
+                itemListElement: [
+                  "Hardscape Construction",
+                  "Retaining Wall Installation",
+                  "Excavation Services",
+                  "Concrete Construction",
+                  "Masonry Restoration",
+                  "Grading and Drainage",
+                ].map((s) => ({ "@type": "Offer", itemOffered: { "@type": "Service", name: s } })),
+              },
+            }),
+          }}
         />
 
-        {/* Services Section */}
-        {services.length > 0 && (
-          <section className="py-16 sm:py-20 bg-gray-50">
-            <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-              <FadeIn direction="up" delay={0}>
-                <div className="text-center mb-12">
-                  <h2 className="text-3xl font-bold text-gray-900 mb-3">Our Services</h2>
-                  <p className="text-gray-600 max-w-2xl mx-auto">
-                    Explore what we offer. Every project gets the attention and quality it deserves.
-                  </p>
-                </div>
-              </FadeIn>
-              <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
-                {services
-                  .sort((a, b) => Number(a.order || 0) - Number(b.order || 0))
-                  .slice(0, 6)
-                  .map((svc, i) => (
-                    <FadeIn key={svc.id} direction="up" delay={i * 80}>
-                      <ServiceCard
-                        title={svc.title}
-                        description={svc.description}
-                        slug={svc.slug}
-                        imageId={svc.image_id}
-                        icon={svc.icon}
-                      />
-                    </FadeIn>
-                  ))}
+        {/* ===== HERO ===== */}
+        <section className="relative bg-gradient-to-br from-black via-gray-900 to-black text-white">
+          <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-24 sm:py-32">
+            <div className="max-w-3xl">
+              <h1 className="text-4xl sm:text-5xl lg:text-6xl font-bold tracking-tight mb-6">
+                Hardscape Contractor{" "}
+                <span className="text-red-500">in Pittsburgh</span>
+              </h1>
+              <p className="text-lg sm:text-xl text-gray-300 mb-8 max-w-2xl">
+                Wall Works Hardscape is a licensed and insured hardscape
+                contractor serving Pittsburgh and surrounding communities. From
+                engineered retaining walls to custom paver patios &mdash; built
+                to last, designed to impress.
+              </p>
+              <div className="flex flex-col sm:flex-row gap-4">
+                <Link
+                  href="/contact"
+                  className="inline-flex items-center justify-center gap-2 bg-red-600 text-white px-8 py-3.5 rounded-lg text-lg font-medium hover:bg-red-500 transition-colors"
+                >
+                  Get a Free Estimate
+                  <ArrowRight className="w-5 h-5" />
+                </Link>
+                <a
+                  href="tel:4125550199"
+                  className="inline-flex items-center justify-center gap-2 border-2 border-white/30 text-white px-8 py-3.5 rounded-lg text-lg font-medium hover:bg-white/10 transition-colors"
+                >
+                  <Phone className="w-5 h-5" />
+                  Call (412) 555-0199
+                </a>
               </div>
-              {services.length > 6 && (
-                <FadeIn direction="up" delay={200}>
-                  <div className="text-center mt-8">
-                    <Link
-                      href="/services"
-                      className="inline-flex items-center gap-1 text-red-600 font-medium hover:text-red-700"
-                    >
-                      View All Services <ArrowRight className="w-4 h-4" />
-                    </Link>
-                  </div>
-                </FadeIn>
-              )}
             </div>
-          </section>
-        )}
-
-        {/* Testimonials Section */}
-        <section className="py-16 sm:py-20">
-          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <FadeIn direction="up" delay={0}>
-              <div className="text-center mb-12">
-                <h2 className="text-3xl font-bold text-gray-900 mb-3">
-                  What Our Clients Say
-                </h2>
-              </div>
-            </FadeIn>
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-              {displayTestimonials.slice(0, 3).map((t, i) => (
-                <FadeIn key={t.id} direction="up" delay={i * 100}>
-                  <TestimonialCard
-                    name={t.name}
-                    role={t.role}
-                    text={t.text}
-                    rating={t.rating}
-                  />
-                </FadeIn>
-              ))}
-            </div>
-            {displayTestimonials.length > 3 && (
-              <FadeIn direction="up" delay={200}>
-                <div className="text-center mt-8">
-                  <Link
-                    href="/testimonials"
-                    className="inline-flex items-center gap-1 text-red-600 font-medium hover:text-red-700"
-                  >
-                    See All Reviews <ArrowRight className="w-4 h-4" />
-                  </Link>
-                </div>
-              </FadeIn>
-            )}
           </div>
         </section>
 
-        {/* CTA Section */}
-        <section className="py-16 sm:py-20 bg-red-600 text-white">
-          <FadeIn direction="up" delay={0}>
-            <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-              <h2 className="text-3xl font-bold mb-4">Ready to Get Started?</h2>
-              <p className="text-red-100 text-lg mb-8 max-w-2xl mx-auto">
-                Contact us today for a free estimate. We&apos;ll discuss your project and provide a
-                no-obligation quote.
-              </p>
-              <Link
-                href="/contact"
-                className="inline-flex items-center gap-2 bg-white text-red-600 px-8 py-3.5 rounded-lg text-lg font-medium hover:bg-red-50 transition-colors"
-              >
-                Get a Free Quote <ArrowRight className="w-5 h-5" />
-              </Link>
-              <p className="mt-4 flex items-center justify-center gap-2 text-red-200 text-sm">
-                <Phone className="w-4 h-4" strokeWidth={1.5} />
-                Or call us directly: <a href={`tel:${config.phone.replace(/\D/g, "")}`} className="font-semibold text-white hover:underline">{config.phone}</a>
+        {/* ===== SERVICES GRID ===== */}
+        <section className="py-16 sm:py-20 bg-gray-50">
+          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div className="text-center mb-12">
+              <h2 className="text-3xl font-bold text-gray-900 mb-3">
+                Our Services
+              </h2>
+              <p className="text-gray-600 max-w-2xl mx-auto">
+                Professional hardscape, excavation, concrete, and masonry
+                services for residential and commercial projects.
               </p>
             </div>
-          </FadeIn>
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+              {SERVICES.map((svc) => (
+                <Link
+                  key={svc.title}
+                  href="/services"
+                  className="group block rounded-xl border border-gray-200 bg-white p-6 shadow-sm hover:shadow-md transition-shadow"
+                >
+                  <div className="flex h-12 w-12 items-center justify-center rounded-lg bg-red-600 text-white mb-4 transition-transform group-hover:scale-110">
+                    <svc.icon className="w-6 h-6" />
+                  </div>
+                  <h3 className="text-lg font-semibold text-gray-900 mb-2 group-hover:text-red-600 transition-colors">
+                    {svc.title}
+                  </h3>
+                  <p className="text-sm text-gray-600">{svc.description}</p>
+                </Link>
+              ))}
+            </div>
+            <div className="text-center mt-8">
+              <Link
+                href="/services"
+                className="inline-flex items-center gap-1 text-red-600 font-medium hover:text-red-700"
+              >
+                View All Services <ArrowRight className="w-4 h-4" />
+              </Link>
+            </div>
+          </div>
+        </section>
+
+        {/* ===== RETAINING WALL PRICING ===== */}
+        <section className="py-16 sm:py-20">
+          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div className="text-center mb-12">
+              <h2 className="text-3xl font-bold text-gray-900 mb-3">
+                How Much Does a Retaining Wall Cost?
+              </h2>
+              <p className="text-gray-600 max-w-3xl mx-auto">
+                Retaining wall costs vary depending on wall height, length,
+                materials, drainage requirements, and site access. In the
+                Pittsburgh area, professionally installed retaining walls
+                typically range from{" "}
+                <strong>$50&ndash;$130+ per square foot</strong> depending on
+                the system used and the complexity of the project.
+              </p>
+            </div>
+
+            {/* Price Tier Cards */}
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-12">
+              {PRICING_TIERS.map((tier) => (
+                <div
+                  key={tier.title}
+                  className="rounded-xl border border-gray-200 bg-white p-6 shadow-sm text-center"
+                >
+                  <h3 className="text-lg font-semibold text-gray-900 mb-2">
+                    {tier.title}
+                  </h3>
+                  <div className="text-3xl font-bold text-red-600 mb-1">
+                    {tier.range}
+                  </div>
+                  <div className="text-sm text-gray-500 mb-3">{tier.unit}</div>
+                  <p className="text-sm text-gray-600">{tier.description}</p>
+                </div>
+              ))}
+            </div>
+
+            {/* Cost Factors */}
+            <div className="bg-gray-50 rounded-xl p-8">
+              <h3 className="text-xl font-semibold text-gray-900 mb-4">
+                Costs Can Vary Depending On:
+              </h3>
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
+                {COST_FACTORS.map((factor) => (
+                  <div
+                    key={factor}
+                    className="flex items-start gap-2 text-gray-700"
+                  >
+                    <CheckCircle2 className="w-5 h-5 text-red-600 shrink-0 mt-0.5" />
+                    <span>{factor}</span>
+                  </div>
+                ))}
+              </div>
+              <p className="mt-6 text-gray-600 font-medium">
+                Because every property is different, Wall Works Hardscape
+                provides detailed, itemized estimates so you know exactly what
+                is required to build a safe and long-lasting wall.
+              </p>
+            </div>
+          </div>
+        </section>
+
+        {/* ===== ENGINEERED SYSTEMS ===== */}
+        <section className="py-16 sm:py-20 bg-gray-50">
+          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div className="text-center mb-12">
+              <h2 className="text-3xl font-bold text-gray-900 mb-3">
+                Engineered Systems We Install
+              </h2>
+              <p className="text-gray-600 max-w-2xl mx-auto">
+                Trusted manufacturer partnerships for residential and commercial
+                retaining wall and hardscape projects.
+              </p>
+            </div>
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+              {SYSTEMS.map((system) => (
+                <a
+                  key={system.name}
+                  href={system.url}
+                  target={system.url !== "#" ? "_blank" : undefined}
+                  rel={system.url !== "#" ? "noopener noreferrer" : undefined}
+                  className="group block rounded-xl border border-gray-200 bg-white p-6 shadow-sm hover:shadow-md hover:border-red-200 transition-all"
+                >
+                  {/* Placeholder logo */}
+                  <div className="w-14 h-14 rounded-lg bg-gray-900 flex items-center justify-center mb-4 text-white text-xl font-bold group-hover:bg-red-600 transition-colors">
+                    {system.name.charAt(0)}
+                  </div>
+                  <div className="flex items-center gap-1 mb-1">
+                    <h3 className="text-base font-semibold text-gray-900">
+                      {system.name}
+                    </h3>
+                    {system.url !== "#" && (
+                      <ExternalLink className="w-3.5 h-3.5 text-gray-400 opacity-0 group-hover:opacity-100 transition-opacity" />
+                    )}
+                  </div>
+                  <p className="text-sm text-gray-600">{system.description}</p>
+                </a>
+              ))}
+            </div>
+          </div>
+        </section>
+
+        {/* ===== SERVICE AREAS ===== */}
+        <section className="py-16 sm:py-20">
+          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div className="text-center mb-10">
+              <h2 className="text-3xl font-bold text-gray-900 mb-3">
+                Serving Pittsburgh and Surrounding Communities
+              </h2>
+              <p className="text-gray-600 max-w-2xl mx-auto">
+                Wall Works Hardscape proudly serves homeowners, businesses, and
+                developers across the greater Pittsburgh region.
+              </p>
+            </div>
+            <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-4 max-w-4xl mx-auto">
+              {SERVICE_AREAS.map((area) => (
+                <div
+                  key={area}
+                  className="flex items-center gap-2 bg-gray-50 rounded-lg px-4 py-3 border border-gray-200"
+                >
+                  <MapPin className="w-4 h-4 text-red-600 shrink-0" />
+                  <span className="text-sm font-medium text-gray-700">
+                    {area}
+                  </span>
+                </div>
+              ))}
+            </div>
+          </div>
+        </section>
+
+        {/* ===== CTA ===== */}
+        <section className="py-16 sm:py-20 bg-red-600 text-white">
+          <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+            <h2 className="text-3xl font-bold mb-4">Ready to Get Started?</h2>
+            <p className="text-red-100 text-lg mb-8 max-w-2xl mx-auto">
+              Contact Wall Works Hardscape today for a free, detailed estimate.
+              Licensed and insured for residential and commercial projects.
+            </p>
+            <div className="flex flex-col sm:flex-row gap-4 justify-center">
+              <Link
+                href="/contact"
+                className="inline-flex items-center justify-center gap-2 bg-white text-red-600 px-8 py-3.5 rounded-lg text-lg font-medium hover:bg-red-50 transition-colors"
+              >
+                Request a Quote <ArrowRight className="w-5 h-5" />
+              </Link>
+              <Link
+                href="/contact"
+                className="inline-flex items-center justify-center gap-2 border-2 border-white/40 text-white px-8 py-3.5 rounded-lg text-lg font-medium hover:bg-white/10 transition-colors"
+              >
+                Schedule a Site Visit
+              </Link>
+            </div>
+          </div>
         </section>
       </main>
 
       <Footer
-        siteName={config.name}
-        phone={config.phone}
-        email={config.email}
-        logoImageId={config.logoImageId}
+        siteName="Wall Works Hardscape"
+        phone="(412) 555-0199"
+        email="info@wallworkhardscape.com"
       />
     </>
   );

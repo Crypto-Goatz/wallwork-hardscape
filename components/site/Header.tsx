@@ -1,16 +1,19 @@
 "use client";
 
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import Link from "next/link";
 import Image from "next/image";
 import { Menu, X, Phone } from "lucide-react";
 import { getPublicUrl } from "@/lib/drive-utils";
 
 const NAV_LINKS = [
+  { href: "/", label: "Home" },
   { href: "/about", label: "About" },
   { href: "/services", label: "Services" },
   { href: "/portfolio", label: "Portfolio" },
+  { href: "/blog", label: "Blog" },
   { href: "/testimonials", label: "Testimonials" },
+  { href: "/contact", label: "Contact" },
 ];
 
 interface HeaderProps {
@@ -21,32 +24,24 @@ interface HeaderProps {
 
 export function Header({ siteName, phone, logoImageId }: HeaderProps) {
   const [mobileOpen, setMobileOpen] = useState(false);
-  const [scrolled, setScrolled] = useState(false);
-
-  useEffect(() => {
-    const onScroll = () => setScrolled(window.scrollY > 10);
-    window.addEventListener("scroll", onScroll, { passive: true });
-    return () => window.removeEventListener("scroll", onScroll);
-  }, []);
 
   return (
-    <header
-      className={`sticky top-0 z-50 bg-black transition-shadow duration-300 ${
-        scrolled ? "shadow-lg shadow-black/40" : ""
-      }`}
-    >
+    <header className="sticky top-0 z-50 bg-white/95 backdrop-blur-sm border-b border-gray-100">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="flex items-center justify-between h-20">
-          {/* Logo */}
-          <Link href="/" className="flex items-center shrink-0">
-            <Image
-              src="/logo.png"
-              alt={siteName}
-              width={440}
-              height={124}
-              className="h-14 w-auto object-contain"
-              priority
-            />
+        <div className="flex items-center justify-between h-16">
+          <Link href="/" className="flex items-center gap-2 text-xl font-bold text-gray-900">
+            {logoImageId ? (
+              <Image
+                src={getPublicUrl(logoImageId)}
+                alt={siteName}
+                width={140}
+                height={40}
+                className="h-10 w-auto object-contain"
+                unoptimized
+              />
+            ) : (
+              siteName
+            )}
           </Link>
 
           {/* Desktop nav */}
@@ -55,83 +50,68 @@ export function Header({ siteName, phone, logoImageId }: HeaderProps) {
               <Link
                 key={link.href}
                 href={link.href}
-                className="px-3 py-2 text-sm font-medium text-gray-300 hover:text-white transition-colors tracking-wide"
+                className="px-3 py-2 text-sm font-medium text-gray-600 hover:text-red-600 rounded-md transition-colors"
               >
                 {link.label}
               </Link>
             ))}
           </nav>
 
-          <div className="hidden md:flex items-center gap-4">
+          <div className="hidden md:flex items-center gap-3">
             {phone && (
               <a
                 href={`tel:${phone.replace(/\D/g, "")}`}
-                className="flex items-center gap-1.5 text-sm font-medium text-gray-300 hover:text-white transition-colors"
+                className="flex items-center gap-1.5 text-sm font-medium text-red-600 hover:text-red-700"
               >
-                <Phone className="w-4 h-4" strokeWidth={1.5} />
+                <Phone className="w-4 h-4" />
                 {phone}
               </a>
             )}
             <Link
               href="/contact"
-              className="bg-red-600 text-white px-5 py-2.5 rounded-lg text-sm font-semibold hover:bg-red-500 transition-colors tracking-wide"
+              className="bg-red-600 text-white px-4 py-2 rounded-lg text-sm font-medium hover:bg-red-700 transition-colors"
             >
-              Get a Free Quote
+              Get a Quote
             </Link>
           </div>
 
           {/* Mobile menu button */}
           <button
             onClick={() => setMobileOpen(!mobileOpen)}
-            className="md:hidden p-2 text-gray-300 hover:text-white transition-colors"
+            className="md:hidden p-2 text-gray-600"
             aria-label="Toggle menu"
           >
-            {mobileOpen ? (
-              <X className="w-6 h-6" strokeWidth={1.5} />
-            ) : (
-              <Menu className="w-6 h-6" strokeWidth={1.5} />
-            )}
+            {mobileOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
           </button>
         </div>
       </div>
 
       {/* Mobile nav */}
-      <div
-        className={`md:hidden overflow-hidden transition-all duration-300 ease-in-out ${
-          mobileOpen ? "max-h-96 opacity-100" : "max-h-0 opacity-0"
-        }`}
-      >
-        <div className="border-t border-white/10 bg-black">
-          <nav className="px-4 py-4 space-y-1">
+      {mobileOpen && (
+        <div className="md:hidden border-t border-gray-100 bg-white">
+          <nav className="px-4 py-3 space-y-1">
             {NAV_LINKS.map((link) => (
               <Link
                 key={link.href}
                 href={link.href}
                 onClick={() => setMobileOpen(false)}
-                className="block px-3 py-2.5 text-base font-medium text-gray-300 hover:text-white rounded-md transition-colors"
+                className="block px-3 py-2 text-base font-medium text-gray-600 hover:text-red-600 rounded-md"
               >
                 {link.label}
               </Link>
             ))}
-            <Link
-              href="/contact"
-              onClick={() => setMobileOpen(false)}
-              className="block px-3 py-2.5 text-base font-medium text-red-400 hover:text-red-300"
-            >
-              Get a Free Quote
-            </Link>
             {phone && (
               <a
                 href={`tel:${phone.replace(/\D/g, "")}`}
-                className="flex items-center gap-2 px-3 py-2.5 text-base font-medium text-gray-400 hover:text-white"
+                className="flex items-center gap-2 px-3 py-2 text-base font-medium text-red-600"
               >
-                <Phone className="w-4 h-4" strokeWidth={1.5} />
+                <Phone className="w-4 h-4" />
                 {phone}
               </a>
             )}
           </nav>
         </div>
-      </div>
+      )}
     </header>
   );
 }
